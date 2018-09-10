@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script src="http://code.jquery.com/jquery.js"></script>
+<style>
+html, body {
+	min-width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.wrap {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #ffdeff;
+	position: relative;
+}
+.wrap .left,
+.wrap .right {
+	transition: all 0.5s ease;
+	width: 50%;
+	height: 100%;
+	top: 0;
+	position: absolute;
+}
+.wrap .left {
+	background-color: #deffff;
+	left: -50%;
+}
+.wrap .left.active {
+	left: 0;
+}
+.wrap .right {
+	background-color: #ffffde;
+	right: -50%;
+}
+.wrap .right.active {
+	right: 0;
+}
+</style>
+<body>
+<div class="wrap">
+	<a href="#" class="on-btn">ON</a>
+	<div class="left">LEFT</div>
+	<div class="right">RIGHT</div>
+</div>
+<script>
+(function($) {
+	$('.on-btn').on('click', function() {
+		$('.left, .right').addClass('active');
+	});
+})(jQuery);
+</script>
+</body>
+</html>
