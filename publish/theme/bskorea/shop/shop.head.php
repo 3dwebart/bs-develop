@@ -48,9 +48,9 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
                         Language select
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">KOR</a>
-                        <a class="dropdown-item" href="#">ENG</a>
-                        <a class="dropdown-item" href="#">CHI</a>
+                        <a class="dropdown-item" href="#" data-lang="ko">한국어</a>
+                        <a class="dropdown-item" href="#" data-lang="en">영어</a>
+                        <a class="dropdown-item" href="#" data-lang="zh-Hans">중국어(간체)</a>
                     </div>
                 </div>
             </li>
