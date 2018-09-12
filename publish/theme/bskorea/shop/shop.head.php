@@ -14,7 +14,22 @@ include_once(G5_LIB_PATH.'/connect.lib.php');
 include_once(G5_LIB_PATH.'/popular.lib.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
 ?>
+<style>
+.select-language { position: relative; }
+.select-language ul { position: absolute; width: 100%; display: none; top: 28px; }
+.select-language ul.active { display: block; width: 100% !important; }
+.select-language ul li { width: 100%; }
+.select-language ul li a { width: 100%; height: 30px; line-height: 30px; }
 
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+</style>
 <!-- 상단 시작 { -->
 <div id="hd">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
@@ -27,6 +42,18 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
     <div id="tnb">
         <h3>회원메뉴</h3>
         <ul>
+            <li>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Language select
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">KOR</a>
+                        <a class="dropdown-item" href="#">ENG</a>
+                        <a class="dropdown-item" href="#">CHI</a>
+                    </div>
+                </div>
+            </li>
             <?php if(G5_COMMUNITY_USE) { ?>
             <li class="tnb_left tnb_shop"><a href="<?php echo G5_SHOP_URL; ?>/"><i class="fa fa-shopping-bag" aria-hidden="true"></i> 쇼핑몰</a></li>
             <li class="tnb_left tnb_community"><a href="<?php echo G5_URL; ?>/"><i class="fa fa-home" aria-hidden="true"></i> 커뮤니티</a></li>
@@ -120,6 +147,10 @@ $(function (){
 
     $(".btn_side_shop").on("click", function() {
         $(this).next(".op_area").slideToggle(300).siblings(".op_area").slideUp();
+    });
+
+    $('.select-language > a').on('mouseover', function() {
+        $(this).parent().find('ul').addClass('active');
     });
 });
 </script>

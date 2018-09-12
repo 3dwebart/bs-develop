@@ -54,6 +54,7 @@ echo '<link rel="stylesheet" href="'.G5_THEME_CSS_URL.'/'.(G5_IS_MOBILE?'mobile'
 <!--[if lte IE 8]>
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>
 <![endif]-->
+<link rel="stylesheet" href="<?php echo G5_CSS_URL ?>/bootstrap.css">
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "<?php echo G5_URL ?>";
@@ -66,7 +67,9 @@ var g5_sca       = "<?php echo isset($sca)?$sca:''; ?>";
 var g5_editor    = "<?php echo ($config['cf_editor'] && $board['bo_use_dhtml_editor'])?$config['cf_editor']:''; ?>";
 var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
 </script>
-<script src="<?php echo G5_JS_URL ?>/jquery-1.8.3.min.js"></script>
+<!-- <script src="<?php echo G5_JS_URL ?>/jquery-1.8.3.min.js"></script> -->
+<script src="<?php echo G5_JS_URL ?>/jquery-3.3.1.js"></script>
+<script src="<?php echo G5_JS_URL ?>/bootstrap.js"></script>
 <?php
 if (defined('_SHOP_')) {
     if(!G5_IS_MOBILE) {
@@ -84,10 +87,13 @@ if (defined('_SHOP_')) {
 <link rel="stylesheet" href="<?php echo G5_JS_URL ?>/font-awesome/css/font-awesome.min.css">
 <?php
 if(G5_IS_MOBILE) {
-    echo '<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>'.PHP_EOL; // overflow scroll 감지
+    // overflow scroll 감지
+    echo '<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>'.PHP_EOL;
 }
-if(!defined('G5_IS_ADMIN'))
+
+if(!defined('G5_IS_ADMIN')) {
     echo $config['cf_add_script'];
+}
 ?>
 </head>
 <body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
