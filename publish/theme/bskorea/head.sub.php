@@ -55,6 +55,7 @@ echo '<link rel="stylesheet" href="'.G5_THEME_CSS_URL.'/'.(G5_IS_MOBILE?'mobile'
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>
 <![endif]-->
 <link rel="stylesheet" href="<?php echo G5_CSS_URL ?>/bootstrap.css">
+<link rel="stylesheet" href="<?php echo G5_CSS_URL ?>/custom.css">
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "<?php echo G5_URL ?>";
@@ -70,6 +71,8 @@ var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
 <!-- <script src="<?php echo G5_JS_URL ?>/jquery-1.8.3.min.js"></script> -->
 <script src="<?php echo G5_JS_URL ?>/jquery-3.3.1.js"></script>
 <script src="<?php echo G5_JS_URL ?>/bootstrap.js"></script>
+<script src="<?php echo G5_JS_URL ?>/jquery.cookie.js"></script>
+<script src="<?php echo G5_JS_URL ?>/jquery.tmpl.js"></script>
 <?php
 if (defined('_SHOP_')) {
     if(!G5_IS_MOBILE) {
@@ -95,6 +98,7 @@ if(!defined('G5_IS_ADMIN')) {
     echo $config['cf_add_script'];
 }
 ?>
+<link rel="shortcut icon" href="<?php echo G5_URL ?>/favicon.png">
 </head>
 <body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
 <?php
