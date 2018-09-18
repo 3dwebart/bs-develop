@@ -6,7 +6,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$outlogin_skin_url.'/style.css">'
 ?>
 
 <!-- 로그인 전 아웃로그인 시작 { -->
-<section id="ol_before" class="ol">
+<section id="ol_before" class="ol login-out">
     <h2>회원로그인</h2>
     <form name="foutlogin" action="<?php echo $outlogin_action_url ?>" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
     <fieldset>

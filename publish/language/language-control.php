@@ -37,6 +37,14 @@ jQuery(document).ready(function() {
 			'path1' : 'frontend',
 			'path2' : 'common',
 			'path3' : 'top-hd-menu'
+		},
+		{
+			'file' : 'search_and_logo',
+			'tmplID' : '#loginOut',
+			'tmplClass' : '.login-out',
+			'path1' : 'frontend',
+			'path2' : 'common',
+			'path3' : 'login-out'
 		}
 	];
 	// alert(filePath[1].q1);
@@ -47,6 +55,7 @@ jQuery(document).ready(function() {
 	function languageChange(e) {
 		jQuery.cookie('selLanguage', e, { expires: 7, path: '/', secure: false });
 
+		// BIGIN :: Auto control
 		for (var i = 0; i < filePath.length; i++) {
 			//console.log('file' + i + ' :: ' + filePath[i].tmplClass);
 			tmplClass = filePath[i].tmplClass;
@@ -66,7 +75,7 @@ jQuery(document).ready(function() {
 				cache: false,
 				timeout: 30000,
 				success: function(json) {
-					console.log(json);
+					//console.log(json);
 					jQuery(json.tmplClass).html('');
 					jQuery(json.tmplID).tmpl(json).appendTo(json.tmplClass);
 					var tmp = [json.searchWordTwoCharactor];
@@ -77,6 +86,26 @@ jQuery(document).ready(function() {
 				}
 			});
 		}
+		// END :: Auto control
+		jQuery.ajax({
+			url: "/language/disable_auto.php",
+			type: "post",
+			data: {
+				selLang: jQuery.cookie('selLanguage')
+			},
+			dataType: "json",
+			cache: false,
+			timeout: 30000,
+			success: function(json) {
+				$('#side_menu #btn_sidemenu span.sound_only').text(json.sideMenuButton);
+				$('#side_menu .side_menu_wr .side_menu_shop .today').text(json.seeToday);
+				$('#side_menu .side_menu_wr .side_menu_shop .shoppingBasket').text(json.shoppingBasket);
+				$('#side_menu .side_menu_wr .side_menu_shop .wishList').text(json.wishList);
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				jQuery("div").html("<div>" + textStatus + " (HTTP-" + xhr.status + " / " + errorThrown + ")</div>" );
+			}
+		});
 	}
 	languageChange(changeLang);
 	$(document).on('click', '.language-nav a', function() {

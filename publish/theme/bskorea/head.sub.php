@@ -72,6 +72,7 @@ var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
 <script src="<?php echo G5_JS_URL ?>/jquery-3.3.1.js"></script>
 <script src="<?php echo G5_JS_URL ?>/bootstrap.js"></script>
 <script src="<?php echo G5_JS_URL ?>/jquery.cookie.js"></script>
+<script src="<?php echo G5_JS_URL ?>/bootbox.js"></script>
 <script src="<?php echo G5_JS_URL ?>/jquery.tmpl.js"></script>
 <?php
 if (defined('_SHOP_')) {

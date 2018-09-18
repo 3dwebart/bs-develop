@@ -34,8 +34,15 @@ $(function () {
 <!-- 상단 시작 { -->
 <!-- BIGIN :: top -->
 <input type="hidden" value="" class="lang">
-
-
+<?php
+/*
+if(isset($_SESSION['ss_mb_id'])) {
+	echo('TRUE');
+} else {
+	echo('FALSE');
+}
+*/
+?>
 <div id="hd">
 	<h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
 
@@ -53,7 +60,7 @@ $(function () {
 		<ul>
 			<li>
 				<div class="dropdown">
-					<a class="btn btn-default dropdown-toggle current-language" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="btn btn-default dropdown-toggle current-language" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						${currentLanguage}
 					</a>
 					<div class="dropdown-menu language-nav" aria-labelledby="dropdownMenuButton">
@@ -109,7 +116,6 @@ $(function () {
 	</div>
 	
 	<div id="hd_menu">
-		
 	</div>
 	<script id="hdMenu" type="text/x-jquery-tmpl">
 		<ul>
@@ -150,7 +156,7 @@ $(function () {
 function search_submit(f) {
 	if (f.q.value.length < 2) {
 		jQuery.ajax({
-			url: "/language/search_and_logo.php",
+			url: "/language/lang_select.php",
 			type: "post",
 			data: {
 				selLang: jQuery.cookie('selLanguage'),
@@ -162,8 +168,13 @@ function search_submit(f) {
 			cache: false,
 			timeout: 30000,
 			success: function(json) {
-				console.log('data :: ' + json);
-				alert(json.searchWordTwoCharactor);
+				//alert(json.searchWordTwoCharactor);
+				bootbox.alert({
+				    message: '<h6>' + json.searchWordTwoCharactor + '</h6>',
+				    callback: function () {
+				        //console.log('This was logged in the callback!');
+				    }
+				});
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				jQuery("div").html("<div>" + textStatus + " (HTTP-" + xhr.status + " / " + errorThrown + ")</div>" );
@@ -179,22 +190,32 @@ function search_submit(f) {
 </script>
 <!-- END :: top -->
 <div id="side_menu">
-	<button type="button" id="btn_sidemenu" class="btn_sidemenu_cl"><i class="fa fa-outdent" aria-hidden="true"></i><span class="sound_only">사이드메뉴버튼</span></button>
+	<button type="button" id="btn_sidemenu" class="btn_sidemenu_cl">
+		<i class="fa fa-outdent" aria-hidden="true"></i>
+		<span class="sound_only">사이드메뉴버튼</span>
+	</button>
 	<div class="side_menu_wr">
 		<?php echo outlogin('theme/shop_basic'); // 아웃로그인 ?>
 		<div class="side_menu_shop">
-			<button type="button" class="btn_side_shop">오늘본상품<span class="count"><?php echo get_view_today_items_count(); ?></span></button>
+			<button type="button" class="btn_side_shop">
+				<span class="today">오늘본상품</span>
+				<span class="count"><?php echo get_view_today_items_count(); ?></span>
+			</button>
 			<?php include(G5_SHOP_SKIN_PATH.'/boxtodayview.skin.php'); // 오늘 본 상품 ?>
-			<button type="button" class="btn_side_shop">장바구니<span class="count"><?php echo get_boxcart_datas_count(); ?></span></button>
+			<button type="button" class="btn_side_shop">
+				<span class="shoppingBasket">장바구니</span>
+				<span class="count"><?php echo get_boxcart_datas_count(); ?></span>
+			</button>
 			<?php include_once(G5_SHOP_SKIN_PATH.'/boxcart.skin.php'); // 장바구니 ?>
-			<button type="button" class="btn_side_shop">위시리스트<span class="count"><?php echo get_wishlist_datas_count(); ?></span></button>
+			<button type="button" class="btn_side_shop">
+				<span class="wishList">위시리스트</span>
+				<span class="count"><?php echo get_wishlist_datas_count(); ?></span>
+			</button>
 			<?php include_once(G5_SHOP_SKIN_PATH.'/boxwish.skin.php'); // 위시리스트 ?>
 		</div>
 		<?php include_once(G5_SHOP_SKIN_PATH.'/boxcommunity.skin.php'); // 커뮤니티 ?>
-
 	</div>
 </div>
-
 <div id="wrapper">
 
 	<div id="aside">

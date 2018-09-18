@@ -1,9 +1,25 @@
 @charset "utf-8";
 
+a { color: #333; }
+a:hover { text-decoration: none; }
 #tnb a { font-size: 12px; }
+#tnb a.current-language {}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0; 
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+}
 #logo { padding: 0; }
 #logo a { display: inline-block; }
-
+.language-nav { top: calc(100% - 2px); }
 .select-language { position: relative; }
 .select-language ul { position: absolute; width: 100%; display: none; top: 28px; }
 .select-language ul.active { display: block; width: 100% !important; }
