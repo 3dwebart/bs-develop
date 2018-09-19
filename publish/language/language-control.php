@@ -1,5 +1,9 @@
 <script>
 jQuery(document).ready(function() {
+	String.prototype.capitalize = function() {
+	    return this.charAt(0).toUpperCase() + this.slice(1);
+	}
+
 	var protocol = window.location.protocol;
 	var host = window.location.host;
 	var rootUrl = protocol + '//' + host;
@@ -37,14 +41,6 @@ jQuery(document).ready(function() {
 			'path1' : 'frontend',
 			'path2' : 'common',
 			'path3' : 'top-hd-menu'
-		},
-		{
-			'file' : 'search_and_logo',
-			'tmplID' : '#loginOut',
-			'tmplClass' : '.login-out',
-			'path1' : 'frontend',
-			'path2' : 'common',
-			'path3' : 'login-out'
 		}
 	];
 	// alert(filePath[1].q1);
@@ -52,12 +48,11 @@ jQuery(document).ready(function() {
 	console.log(filePath);
 	console.log('cnt :: ' + filePath.length);
 
-	function languageChange(e) {
+	function languageChange(e, n) {
 		jQuery.cookie('selLanguage', e, { expires: 7, path: '/', secure: false });
 
 		// BIGIN :: Auto control
 		for (var i = 0; i < filePath.length; i++) {
-			//console.log('file' + i + ' :: ' + filePath[i].tmplClass);
 			tmplClass = filePath[i].tmplClass;
 			tmplID = filePath[i].tmplClass;
 			jQuery.ajax({
@@ -101,17 +96,50 @@ jQuery(document).ready(function() {
 				$('#side_menu .side_menu_wr .side_menu_shop .today').text(json.seeToday);
 				$('#side_menu .side_menu_wr .side_menu_shop .shoppingBasket').text(json.shoppingBasket);
 				$('#side_menu .side_menu_wr .side_menu_shop .wishList').text(json.wishList);
+				var i = 0;
+
+				$('.lang-change').each(function() {
+					var firstUpperCase = $(this).data('first-upper');
+					if(firstUpperCase != undefined) {
+						//alert('nothing');
+						var first = 1;
+					}
+					//alert(firstUpperCase);
+					if(n == 0) {
+						readLangCode = $(this).text();
+						$(this).data('read-code', readLangCode);
+					} else {
+						readLangCode = $(this).data('read-code');
+					}
+					
+					readLangCodeArr = readLangCode.split('$');
+					var languageCode = '';
+					var languageCodeJoin = '';
+					for (var i = 1; i < readLangCodeArr.length; i++) {
+						languageCode = readLangCodeArr[i].replace('{','').replace('}','');
+						languageCodeJoin += eval('json.' + languageCode);
+					}
+					if(first == 1) {
+						var tmpString = languageCodeJoin.capitalize();
+						$(this).text(tmpString);
+					} else {
+						var tmpString = languageCodeJoin;
+						$(this).text(tmpString);
+					}
+				});
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				jQuery("div").html("<div>" + textStatus + " (HTTP-" + xhr.status + " / " + errorThrown + ")</div>" );
 			}
 		});
 	}
-	languageChange(changeLang);
+	var n = 0;
+	languageChange(changeLang, n);
 	$(document).on('click', '.language-nav a', function() {
+		n = 1;
 		var langCode = $(this).data('lang');
 		jQuery('.lang').val(langCode);
-		languageChange(langCode);
+		languageChange(langCode, n);
 		return false;
 	});
 });

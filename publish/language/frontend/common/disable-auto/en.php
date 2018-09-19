@@ -1,7 +1,9 @@
 <?php
 $disableAuto = array (
+	'b' => ' ', // 문자열을 하나의 요소에 여러개 사용시 시이 공백의 필요시 사용 ==> ${b}
 	'sideMenuButton' => 'side menu button',
 	'administrator' => 'administrator',
+	'admin' => 'admin',
 	'shoppingMall' => 'shopping mall',
 	'community' => 'community',
 	'shoppingBasket' => 'shopping basket',
@@ -33,12 +35,12 @@ $disableAuto = array (
 	'require' => 'require',
 	'search' => 'search',
 	'searchWordTwoCharactor' => 'Please enter at least two characters for the search term.',
-	'hit' => 'hit',
-	'recommendation' => 'recommendation',
-	'newest' => 'newest',
-	'hot' => 'hot`',
-	'sale' => 'sale',
-	'item' => 'item',
+	'hit' => 'hit ',
+	'recommendation' => 'recommendation ',
+	'newest' => 'newest ',
+	'hot' => 'hot ',
+	'sale' => 'sale ',
+	'item' => 'item ',
 	'faq' => 'FAQ',
 	'oneToOneInquire' => '1:1 inquire',
 	'individualPayment' => 'individual payment',
@@ -60,6 +62,15 @@ $disableAuto = array (
 	'modification' => 'modification',
 	'fontSizeConsistOfDisplayNone' => 'font size consist display:none',
 	'small' => 'small',
-	'large' => 'large'
+	'large' => 'large',
+	// footer
+	'companyName' => 'company name',
+	'CRN' => 'company registration number',
+	'ceo' => 'CEO',
+	'tel' => 'telephone number',
+	'fax' => 'fax number',
+	'nmrn' => 'network mall report number', // network mall report number
+	'po' => 'Privacy officer', // Privacy Officer
+	'scn' => 'Supplementary carrier number' // Supplementary carrier number
 );
 ?>

@@ -7,6 +7,7 @@ include_once(G5_PATH.'/Language/language-control.php');
 //$languagePack = $_SERVER['DOCUMENT_ROOT'].'/language/frontend/common/top-search-logo/'.$_COOKIE['selLanguage'].'.php';
 
 ?>
+<script src="http://code.jquery.com/jquery.js"></script>
 <style>
 .box {
 	margin: 20px;
@@ -87,3 +88,17 @@ include_once(G5_PATH.'/Language/language-control.php');
 <div class="box">
 	<span>BOX</span>
 </div>
+
+<div class="sc-test">${test1} ${test2}</div>
+<script>
+function scTest() {
+	var v = $('.sc-test').text();
+	var arr = v.split('$');
+	for (var i = 0; i < arr.length; i++) {
+		alert('arr[' + i + ']' + arr[i]);
+	}
+	alert(v);
+}
+
+scTest();
+</script>

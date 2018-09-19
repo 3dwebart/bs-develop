@@ -217,7 +217,6 @@ function search_submit(f) {
 	</div>
 </div>
 <div id="wrapper">
-
 	<div id="aside">
 
 		<?php include_once(G5_SHOP_SKIN_PATH.'/boxcategory.skin.php'); // 상품분류 ?>
@@ -225,7 +224,7 @@ function search_submit(f) {
 		<?php if($default['de_type4_list_use']) { ?>
 		<!-- 인기상품 시작 { -->
 		<section class="sale_prd">
-			<h2><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=4">인기상품</a></h2>
+			<h2><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=4" class="lang-change"  data-first-upper="1">${hot}${item}</a></h2>
 			<?php
 			$list = new item_list();
 			$list->set_type(4);

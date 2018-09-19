@@ -1,7 +1,9 @@
 <?php
 $disableAuto = array (
+	'b' => ' ', // 문자열을 하나의 요소에 여러개 사용시 시이 공백의 필요시 사용 ==> ${b}
 	'sideMenuButton' => '사이드 메뉴 버튼',
 	'administrator' => '관리자',
+	'admin' => '관리자',
 	'shoppingMall' => '쇼핑몰',
 	'community' => '커뮤니티',
 	'shoppingBasket' => '장바구니',
@@ -60,6 +62,15 @@ $disableAuto = array (
 	'modification' => '조정',
 	'fontSizeConsistOfDisplayNone' => '글자크기 조정 display:none 되어 있음',
 	'small' => '작게',
-	'large' => '크게'
+	'large' => '크게',
+	// footer
+	'companyName' => '회사명',
+	'CRN' => '사업자 등록 번호',
+	'ceo' => '대표자',
+	'tel' => '전화번호',
+	'fax' => '팩스번호',
+	'nmrn' => '통신판매업신고번호', // network mall report number
+	'po' => '개인정보 보호책임자', // Privacy Officer
+	'scn' => '부가통신사업신고번호' // Supplementary carrier number
 );
 ?>
