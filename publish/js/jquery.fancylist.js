@@ -18,7 +18,7 @@
         var $element = this.find(cfg.element);
         var $this = this;
 
-        if($element.size() < 1)
+        if($element.length < 1) // size( ) 3.0 이후부터 사라짐
             return;
 
         function item_arrange()

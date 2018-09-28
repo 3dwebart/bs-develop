@@ -165,7 +165,7 @@ $(function (){
         var $this = $(this);
         $sub_ul = $(this).closest("li").children("ul.sub_cate");
 
-        if($sub_ul.size() > 0) {
+        if($sub_ul.length > 0) { // size( ) 3.0 이후부터 사라짐
             var txt = $this.text();
 
             if($sub_ul.is(":visible")) {

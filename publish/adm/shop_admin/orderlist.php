@@ -510,7 +510,7 @@ $(function(){
         var $this = $(this);
         var od_id = $this.text().replace(/[^0-9]/g, "");
 
-        if($this.next("#orderitemlist").size())
+        if($this.next("#orderitemlist").length) // size( ) 3.0 이후부터 사라짐
             return false;
 
         $("#orderitemlist").remove();

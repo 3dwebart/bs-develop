@@ -29,7 +29,7 @@ $(function() {
                 }
 
                 var $items = $(data.item).find("li");
-                var cnt = $items.size();
+                var cnt = $items.length; // size( ) 3.0 이후부터 사라짐
 
                 if(cnt < 1) {
                     alert("등록된 상품이 더 이상없습니다.");

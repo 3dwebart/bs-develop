@@ -382,7 +382,7 @@ function get_image($img, $width=0, $height=0, $img_id='')
 
 
 // 상품 이미지를 얻는다
-function get_it_image($it_id, $width, $height=0, $anchor=false, $img_id='', $img_alt='', $is_crop=false)
+function get_it_image($it_id, $width, $height=0, $anchor=false, $img_id='', $img_alt='', $is_crop=true)
 {
     global $g5;
 
@@ -442,7 +442,7 @@ function get_it_image($it_id, $width, $height=0, $anchor=false, $img_id='', $img
 
 
 // 상품이미지 썸네일 생성
-function get_it_thumbnail($img, $width, $height=0, $id='', $is_crop=false)
+function get_it_thumbnail($img, $width, $height=0, $id='', $is_crop=true)
 {
     $str = '';
 

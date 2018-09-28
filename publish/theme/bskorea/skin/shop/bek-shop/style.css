@@ -111,6 +111,7 @@
 .sct_10 .sct_last {margin:0 0 15px !important}
 .sct_10 .sct_clear {clear:both}
 .sct_10 .sct_img{position:relative}
+.sct_10 .sct_img > a{display: inline-block;}
 .sct_10 .sct_sns{display:none;position:absolute;bottom:10px;right:0px;text-align:center;z-index:60;width:100%}
 .sct_10 li:hover .sct_sns{display:block}
 .sct_10 .sct_sns a{display:inline-block;border-radius:50%;margin:2px ;width:40px;text-align:center;height:40px;padding:10px 0;background:rgba(0,0,0,0.4)}

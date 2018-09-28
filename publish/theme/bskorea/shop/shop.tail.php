@@ -17,7 +17,7 @@ $admin = get_admin("super");
 
 <!-- 하단 시작 { -->
 </div>
-
+</div>
 <div id="ft">
     <div class="ft_wr">
         <ul class="ft_ul">
@@ -27,7 +27,7 @@ $admin = get_admin("super");
             <li><a href="<?php echo get_device_change_url(); ?>">모바일버전</a></li>
         </ul>
         
-        <a href="<?php echo G5_SHOP_URL; ?>/" id="ft_logo"><img src="<?php echo G5_DATA_URL; ?>/common/logo_img2" alt="처음으로"></a>
+        <a href="<?php echo G5_SHOP_URL; ?>/" id="ft_logo"><img src="<?php echo G5_IMG_URL; ?>/logo/barskorea-logo.png" alt="처음으로"></a>
 
         <div class="ft_info">
             <span><b>회사명</b> <?php echo $default['de_admin_company_name']; ?></span>

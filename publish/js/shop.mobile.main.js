@@ -24,7 +24,7 @@
         var $btns;
 
         var idx = cfg.startSlide;
-        var count = $slides.size();
+        var count = $slides.length; // size( ) 3.0 이후부터 사라짐
         var width, height;
         var tab = null;
 
@@ -118,7 +118,7 @@
         var $btns = this.find(""+cfg.buttons+"");
 
         var idx = cfg.startSlide;
-        var count = $slides.size();
+        var count = $slides.length; // size( ) 3.0 이후부터 사라짐
         var width, outerW;
 
         if(count < 1)

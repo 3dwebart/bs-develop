@@ -1,4 +1,7 @@
 <?php
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 if(G5_IS_MOBILE) {
@@ -13,8 +16,11 @@ include_once(G5_LIB_PATH.'/connect.lib.php');
 include_once(G5_LIB_PATH.'/popular.lib.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
 include_once(G5_PATH.'/Language/language-control.php');
-$languagePack = $_SERVER['DOCUMENT_ROOT'].'/language/frontend/common/top-search-logo/'.$_COOKIE['selLanguage'].'.php';
+$languagePack = G5_URL.'/language/frontend/common/top-search-logo/'.$_COOKIE['selLanguage'].'.php';
 ?>
+<?php include_once('cate_nav.php'); ?>
+<link rel="stylesheet" href="/css/magnific-popup.css" />
+<script src="/js/jquery.magnific-popup.js"></script>
 <script>
 $(function () {
 	$(".btn_sidemenu_cl").on("click", function() {
@@ -120,6 +126,9 @@ if(isset($_SESSION['ss_mb_id'])) {
 	<script id="hdMenu" type="text/x-jquery-tmpl">
 		<ul>
 			<li>
+				<a href="#" class="open-cate-nav"><i class="fa fa-bars"></i></a>
+			</li>
+			<li>
 				<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=1">${hit}${item}</a>
 			</li>
 			<li>
@@ -172,7 +181,7 @@ function search_submit(f) {
 				bootbox.alert({
 				    message: '<h6>' + json.searchWordTwoCharactor + '</h6>',
 				    callback: function () {
-				        //console.log('This was logged in the callback!');
+				        z//console.log('This was logged in the callback!');
 				    }
 				});
 			},

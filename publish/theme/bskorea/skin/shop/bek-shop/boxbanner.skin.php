@@ -36,7 +36,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
 }
 if ($i>0) echo '</ul></aside>'.PHP_EOL;
 ?>
-
+<script src="<?php echo G5_JS_URL ?>/jquery.bxslider.js"></script>
 <script>
 $(document).ready(function(){
     $('.sb_bn').show().bxSlider({

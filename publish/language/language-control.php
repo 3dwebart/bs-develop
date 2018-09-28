@@ -1,7 +1,27 @@
 <script>
 jQuery(document).ready(function() {
+	var scrollPos = jQuery(document).scrollTop();
+	jQuery(document).scroll(function() {
+		scrollPos = jQuery(document).scrollTop();
+		if(scrollPos > 115) {
+			jQuery('#hd_menu').addClass('on-scroll');
+		} else {
+			jQuery('#hd_menu').removeClass('on-scroll');
+		}
+	});
+
+	jQuery(document).on('click', '.open-cate-nav', function() {
+		jQuery('.cate-nav').addClass('on');
+	});
+	jQuery(document).on('click', '.cate-nav .top', function() {
+		jQuery('.cate-nav').removeClass('on');
+	});
+
+	jQuery('.item-wrap .image img').removeAttr('width');
+	jQuery('.item-wrap .image img').removeAttr('height');
+
 	String.prototype.capitalize = function() {
-	    return this.charAt(0).toUpperCase() + this.slice(1);
+		return this.charAt(0).toUpperCase() + this.slice(1);
 	}
 
 	var protocol = window.location.protocol;
@@ -70,11 +90,9 @@ jQuery(document).ready(function() {
 				cache: false,
 				timeout: 30000,
 				success: function(json) {
-					//console.log(json);
 					jQuery(json.tmplClass).html('');
 					jQuery(json.tmplID).tmpl(json).appendTo(json.tmplClass);
 					var tmp = [json.searchWordTwoCharactor];
-					//alert(tmp[0]);
 				},
 				error: function(xhr, textStatus, errorThrown) {
 					jQuery("div").html("<div>" + textStatus + " (HTTP-" + xhr.status + " / " + errorThrown + ")</div>" );
