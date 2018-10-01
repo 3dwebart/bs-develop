@@ -183,6 +183,7 @@ function set_option_value($frm, $btn)
 				return false;
 			}
 
+			/*
 			if(btnType == 'cart') {
 				bootbox.confirm({
 					message: "<h6>상품이 장바구니에 담겼습니다.</h6><h4>지금 확인하시겠습니까?</h4>",
@@ -205,7 +206,7 @@ function set_option_value($frm, $btn)
 				});
 			} else if(btnType == 'buy') {
 				bootbox.confirm({
-					message: "<h6>바로주문</h6><h4>지금 확인하시겠습니까?</h4>",
+					message: "<h6>상품이 장바구니에 담겼습니다.</h6><h4>지금 확인하시겠습니까?</h4>",
 					buttons: {
 						confirm: {
 							label: 'Yes',
@@ -224,6 +225,7 @@ function set_option_value($frm, $btn)
 					}
 				});
 			}
+			*/
 
 			/*
 			var cart_msg_layer = "";
