@@ -128,9 +128,10 @@ div[class^="col-"] {
 </div>
 <script>
 (function($) {
+	jQuery('.thumb-img > div[class^="col-"]').eq(0).find('a').addClass('active');
 	jQuery(document).on('click', '.thumb-img a', function() {
 		var imgName = jQuery(this).find('img').attr('src');
-		jQuery(this).closest('.thumb-img').siblings().find('a').removeClass('active');
+		jQuery(this).closest('div[class^="col-"]').siblings().find('a').removeClass('active');
 		jQuery(this).addClass('active');
 		jQuery('.large-img img').attr('src', imgName);
 		return false;

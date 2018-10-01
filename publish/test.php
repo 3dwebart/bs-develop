@@ -84,12 +84,16 @@ include_once(G5_PATH.'/Language/language-control.php');
 		top: -2px;
 	}
 }
+.chr-test {
+	font-size: 32px;
+}
 </style>
 <div class="box">
 	<span>BOX</span>
 </div>
 
 <div class="sc-test">${test1} ${test2}</div>
+<div class="chr-test"></div>
 <script>
 function scTest() {
 	var v = $('.sc-test').text();
@@ -101,4 +105,15 @@ function scTest() {
 }
 
 scTest();
+(function($) {
+	var FCC = String.fromCharCode(2580);
+	console.log('=============================');
+	console.log("ਔ".charCodeAt(0));
+	console.log(FCC);
+	console.log('=============================');
+	jQuery('.chr-test').append(FCC);
+})(jQuery);
+
+
+
 </script>

@@ -48,7 +48,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 
     echo '<div class="col-4">'.PHP_EOL; // BIGIN :: orogon : li
 
-    echo '<form name="flist_'.$i.'" onsubmit="return false;">'.PHP_EOL; // BIGIN :: form
+    echo '<form id="flist_'.$i.'" name="flist_'.$i.'" onsubmit="return false;">'.PHP_EOL; // BIGIN :: form
 
     echo '<div class="item-wrap">'.PHP_EOL; // BIGIN :: item-wrap
 
@@ -161,6 +161,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
         <input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][]" value="">
         <input type="hidden" name="io_price[<?php echo $row['it_id']; ?>][]" value="">
         <input type="hidden" name="ct_qty[<?php echo $row['it_id']; ?>][]" value="<?php echo $item_ct_qty; ?>">
+        <input type="hidden" name="sw_direct" value="1">
         <table class="sit_ov_tbl">
             <colgroup>
                 <col class="grid_2">
@@ -187,8 +188,10 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
     echo "</div>".PHP_EOL; // END :: option
     echo "<div class='input-group pl-3 pr-3'>".PHP_EOL; // BIGIN :: buttons
     echo "<div class='btn-group'>".PHP_EOL;
-    echo "<button type='button' class='btn btn-success btn_add_cart'><i class='fa fa-shopping-cart'></i> 장바구니</button>".PHP_EOL;
-    echo "<button type='button' class='btn btn-primary ml-2'><i class='fa fa-money'></i> 바로구매</button>".PHP_EOL;
+    echo "<button type='button' class='btn btn-success btn_add_cart' data-btn-type='cart'><i class='fa fa-shopping-cart'></i> 장바구니</button>".PHP_EOL;
+    echo "<button type='submit' class='btn btn-primary ml-2 btn_add_buy' data-btn-type='get' onclick=\"itemBuySubmit('flist_".$i."')\">".PHP_EOL;
+    echo "<i class='fa fa-money'></i> 바로구매".PHP_EOL;
+    echo "</button>".PHP_EOL;
     echo "</div>".PHP_EOL;
     echo "</div>".PHP_EOL; // END :: buttons
     echo "</div>".PHP_EOL; // END :: form-group
@@ -234,9 +237,11 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
     });
     jQuery(document).on('mouseleave', '.item-wrap', function() {
         jQuery(this).find('.list-payment').removeClass('on');
+        jQuery(this).closest('form')[0].reset();
     });
     jQuery(document).on('click', '.list-payment-close', function() {
         jQuery(this).parent().parent().parent().parent().removeClass('on');
+        jQuery(this).closest('form')[0].reset();
         return false;
     });
     jQuery(document).on('click touch', '.mfp-close', function(e) {

@@ -181,7 +181,8 @@ function search_submit(f) {
 				bootbox.alert({
 				    message: '<h6>' + json.searchWordTwoCharactor + '</h6>',
 				    callback: function () {
-				        z//console.log('This was logged in the callback!');
+				        //console.log('This was logged in the callback!');
+				        return false;
 				    }
 				});
 			},
