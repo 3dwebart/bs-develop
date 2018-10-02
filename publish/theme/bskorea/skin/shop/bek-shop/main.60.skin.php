@@ -161,7 +161,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
         <input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][]" value="">
         <input type="hidden" name="io_price[<?php echo $row['it_id']; ?>][]" value="">
         <input type="hidden" name="ct_qty[<?php echo $row['it_id']; ?>][]" value="<?php echo $item_ct_qty; ?>">
-        <input type="hidden" name="sw_direct" value="1">
+        <input type="hidden" name="sw_direct[<?php echo $row['it_id']; ?>][]" value="" id="sw_direct_<?php echo $row['it_id']; ?>">
         <table class="sit_ov_tbl">
             <colgroup>
                 <col class="grid_2">
@@ -182,8 +182,6 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 <?php
     }
     /* END :: option */
-?>
-<?
     echo "</div>".PHP_EOL;
     echo "</div>".PHP_EOL; // END :: option
     echo "<div class='input-group pl-3 pr-3'>".PHP_EOL; // BIGIN :: buttons

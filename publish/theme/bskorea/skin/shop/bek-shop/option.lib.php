@@ -9,7 +9,7 @@ function get_list_options($it_id, $subject, $no)
     if(!$it_id || !$subject)
         return '';
 
-    $sql = " select * from {$g5['g5_shop_item_option_table']} where io_type = '0' and it_id = '$it_id' and io_use = '1' order by io_no asc ";
+    $sql = " SELECT * FROM {$g5['g5_shop_item_option_table']} WHERE io_type = '0' AND it_id = '$it_id' AND io_use = '1' ORDER BY io_no ASC ";
     $result = sql_query($sql);
     if( !mysqli_num_rows($result) ) {
         return '';

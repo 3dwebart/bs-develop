@@ -61,6 +61,10 @@ $(function() {
 	$("button.btn_add_cart").click(function() {
 		var $frm = $(this.form);
 
+		$(this).closest('form')
+		.find('.list_item_option')
+		.find('input[id^="#sw_direct_"]').val(0);
+
 		// 메세지 레이어 닫기
 		cart_msg_layer();
 
@@ -68,27 +72,30 @@ $(function() {
 	});
 
 	// 구매하기 버튼
-	/*
+	
 	$("button.btn_add_buy").click(function() {
 		var $frm = $(this.form);
 		var $action = '/shop/orderform.php?sw_direct=1';
+		$(this).closest('form')
+		.find('.list_item_option')
+		.find('input[id^="#sw_direct_"]').val(1);
 
-		var $frmName = $frm.attr('name');
+		// var $frmName = $frm.attr('name');
 
-		$frm.attr('method', 'post');
-		$frm.attr('action', $action);
-		console.log($frm.attr('method'));
-		console.log($frm.attr('action'));
-		console.log($frmName);
-		//return false;
-		itemBuySubmit($frmName);
+		// $frm.attr('method', 'post');
+		// $frm.attr('action', $action);
+		// console.log($frm.attr('method'));
+		// console.log($frm.attr('action'));
+		// console.log($frmName);
+		// //return false;
+		// itemBuySubmit($frmName);
 
 		// 메세지 레이어 닫기
 		//cart_msg_layer();
 
-		//set_option_value($frm, $(this));
+		set_option_value($frm, $(this));
 	});
-	*/
+	
 
 	// 장바구니 레이어 닫기
 	$("#cart_msg_close, #cart_msg_no").on("click", function() {
@@ -122,6 +129,11 @@ function set_option_value($frm, $btn)
 	var value, info, sel_opt, item, price, stock, run_error = false;
 	var option = sep = "";
 	var btnType = $btn.data('btn-type');
+	// if(btnType == 'cart') {
+	// 	$('#sw_direct').val(0);
+	// } else if(btnType == 'buy') {
+	// 	$('#sw_direct').val(1);
+	// }
 
 	if($sel.length > 0) { // size( ) 3.0 이후부터 사라짐
 		info = $frm.find("select.it_option:last").val().split(",");
@@ -171,9 +183,26 @@ function set_option_value($frm, $btn)
 	$frm.find("input[name^=io_id]").val(id);
 	$frm.find("input[name^=io_value]").val(option);
 	$frm.find("input[name^=io_price]").val(price);
-
-	var frmData = $frm.serialize();
 	// 장바구니 담기
+	/*
+	jQuery.ajax({
+		url: g5_shop_css_url+"/item.cartupdate.php",
+		type: "post",
+		data: {
+			$frm.serialize(),
+			btnType: btnType
+		},
+		dataType: "json",
+		cache: false,
+		timeout: 30000,
+		success: function(json) {
+			//
+		},
+		error: function(xhr, textStatus, errorThrown) {
+			jQuery("div").html("<div>" + textStatus + " (HTTP-" + xhr.status + " / " + errorThrown + ")</div>" );
+		}
+	});
+	*/
 	$.post(
 		g5_shop_css_url+"/item.cartupdate.php",
 		$frm.serialize(),
@@ -224,25 +253,6 @@ function set_option_value($frm, $btn)
 					}
 				});
 			}
-
-			/*
-			var cart_msg_layer = "";
-			cart_msg_layer += "<div id=\"cart_msg_layer\">";
-			cart_msg_layer += "<h3>장바구니 보기</h3>";
-			cart_msg_layer += "<button type=\"button\" id=\"cart_msg_close\"><span></span>닫기</button>";
-			cart_msg_layer += "<p>상품이 장바구니에 담겼습니다.<br><strong>지금 확인하시겠습니까?</strong></p>";
-			cart_msg_layer += "<div>";
-			cart_msg_layer += "<button type=\"button\" id=\"cart_msg_yes\"><img src=\""+g5_shop_css_url+"/img/pop_msg_yes.gif\" alt=\"예\"></button>";
-			cart_msg_layer += "<button type=\"button\" id=\"cart_msg_no\"><img src=\""+g5_shop_css_url+"/img/pop_msg_no.gif\" alt=\"아니오\"></button>";
-			cart_msg_layer += "</div>";
-			cart_msg_layer += "</div>";
-
-			var pos = $btn.position();
-			var top = pos.top + $btn.height() + 10;
-
-			$frm.closest("div").append(cart_msg_layer);
-			$("#cart_msg_layer").css("top", top+"px");
-			*/
 		}
 	);
 }

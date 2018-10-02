@@ -4,7 +4,7 @@ a { color: #333; }
 a:hover { text-decoration: none; }
 #tnb a { font-size: 12px; }
 #tnb a.current-language {}
-
+legend { width: auto; }
 /* BIGIN :: NAV Custom */
 #hd_menu {
     transition: all .5s ease;

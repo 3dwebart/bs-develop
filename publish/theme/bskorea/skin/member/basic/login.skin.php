@@ -3,7 +3,29 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
+include_once(G5_PATH.'/language/language-control.php');
 ?>
+
+<div class="member-nav"></div>
+<script id="memberNav" type="text/x-jquery-tmpl">
+<div id="tnb">
+    <h3>${memberMenu}</h3>
+    <ul>
+        <li>
+            <div class="dropdown">
+                <a class="btn btn-default dropdown-toggle current-language" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ${currentLanguage}
+                </a>
+                <div class="dropdown-menu language-nav" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#" data-lang="ko">${langKor}</a>
+                    <a class="dropdown-item" href="#" data-lang="en">${langEng}</a>
+                    <a class="dropdown-item" href="#" data-lang="zh-Hans">${langZhh}</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+</script>
 
 <!-- 로그인 시작 { -->
 <div id="mb_login" class="mbskin">
