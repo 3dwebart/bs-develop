@@ -9,7 +9,6 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 <input type="hidden" name="it_id[]" value="<?php echo $it_id; ?>">
 <input type="hidden" name="sw_direct">
 <input type="hidden" name="url">
-
 <div id="sit_ov_wrap">
     <!-- 상품이미지 미리보기 시작 { -->
     <div id="sit_pvi">
@@ -73,7 +72,6 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
             <a href="<?php echo G5_SHOP_URL; ?>/largeimage.php?it_id=<?php echo $it['it_id']; ?>&amp;no=1" target="_blank" class="popup_item_image "><i class="fa fa-search-plus" aria-hidden="true"></i><span class="sound_only">확대보기</span></a>
         </div>
         <!-- } 다른 상품 보기 끝 -->
-
         <div id="sit_star_sns">
             <?php if ($star_score) { ?>
             <span class="sound_only">고객평점</span> 

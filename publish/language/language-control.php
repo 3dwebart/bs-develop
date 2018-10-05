@@ -12,9 +12,11 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on('click', '.open-cate-nav', function() {
 		jQuery('.cate-nav').addClass('on');
+		return false;
 	});
 	jQuery(document).on('click', '.cate-nav .top', function() {
 		jQuery('.cate-nav').removeClass('on');
+		return false;
 	});
 
 	jQuery('.item-wrap .image img').removeAttr('width');

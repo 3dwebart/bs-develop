@@ -17,6 +17,7 @@
 				$list->set_view('it_price', true);
 				$list->set_view('it_icon', false);
 				$list->set_view('sns', false);
+				$list->set_view('it_star_score', true); // 별점 보이기
 				echo $list->run();
 			?>
 		</section>

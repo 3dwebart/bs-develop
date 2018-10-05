@@ -96,6 +96,7 @@ if (defined('_SHOP_')) {
 <script src="<?php echo G5_JS_URL ?>/common.js?ver=<?php echo G5_JS_VER; ?>"></script>
 <script src="<?php echo G5_JS_URL ?>/wrest.js?ver=<?php echo G5_JS_VER; ?>"></script>
 <script src="<?php echo G5_JS_URL ?>/placeholders.min.js"></script>
+<script src="<?php echo G5_JS_URL ?>/custom.js"></script>
 <link rel="stylesheet" href="<?php echo G5_JS_URL ?>/font-awesome/css/font-awesome.min.css">
 <?php
 if(G5_IS_MOBILE) {

@@ -1,7 +1,4 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
-
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 if(G5_IS_MOBILE) {
@@ -19,8 +16,6 @@ include_once(G5_PATH.'/Language/language-control.php');
 $languagePack = G5_URL.'/language/frontend/common/top-search-logo/'.$_COOKIE['selLanguage'].'.php';
 ?>
 <?php include_once('cate_nav.php'); ?>
-<link rel="stylesheet" href="/css/magnific-popup.css" />
-<script src="/js/jquery.magnific-popup.js"></script>
 <script>
 $(function () {
 	$(".btn_sidemenu_cl").on("click", function() {
@@ -126,7 +121,7 @@ if(isset($_SESSION['ss_mb_id'])) {
 	<script id="hdMenu" type="text/x-jquery-tmpl">
 		<ul>
 			<li>
-				<a href="#" class="open-cate-nav"><i class="fa fa-bars"></i></a>
+				<a href="#" class="open-cate-nav"><i class="fa fa-indent"></i></a>
 			</li>
 			<li>
 				<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=1">${hit}${item}</a>
@@ -182,7 +177,6 @@ function search_submit(f) {
 				    message: '<h6>' + json.searchWordTwoCharactor + '</h6>',
 				    callback: function () {
 				        //console.log('This was logged in the callback!');
-				        return false;
 				    }
 				});
 			},
@@ -199,7 +193,6 @@ function search_submit(f) {
 }
 </script>
 <!-- END :: top -->
-<!-- BIGIN :: right show menu click is show -->
 <div id="side_menu">
 	<button type="button" id="btn_sidemenu" class="btn_sidemenu_cl">
 		<i class="fa fa-outdent" aria-hidden="true"></i>
@@ -227,4 +220,51 @@ function search_submit(f) {
 		<?php include_once(G5_SHOP_SKIN_PATH.'/boxcommunity.skin.php'); // 커뮤니티 ?>
 	</div>
 </div>
-<!-- END :: right show menu click is show -->
+<div id="wrapper">
+	<div id="aside">
+
+		<?php include_once(G5_SHOP_SKIN_PATH.'/boxcategory.skin.php'); // 상품분류 ?>
+		<?php include_once(G5_THEME_SHOP_PATH.'/category.php'); // 분류 ?>
+		<?php if($default['de_type4_list_use']) { ?>
+		<!-- 인기상품 시작 { -->
+		<section class="sale_prd">
+			<h2><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=4" class="lang-change"  data-first-upper="1">${hot}${item}</a></h2>
+			<?php
+			$list = new item_list();
+			$list->set_type(4);
+			$list->set_view('it_id', false);
+			$list->set_view('it_name', true);
+			$list->set_view('it_basic', false);
+			$list->set_view('it_cust_price', false);
+			$list->set_view('it_price', true);
+			$list->set_view('it_icon', false);
+			$list->set_view('sns', false);
+			echo $list->run();
+			?>
+		</section>
+		<!-- } 인기상품 끝 -->
+		<?php } ?>
+
+		<!-- 커뮤니티 최신글 시작 { -->
+		<section id="sidx_lat">
+			<h2>커뮤니티 최신글</h2>
+			<?php echo latest('theme/shop_basic', 'notice', 5, 30); ?>
+		</section>
+		<!-- } 커뮤니티 최신글 끝 -->
+
+		<?php echo poll('theme/shop_basic'); // 설문조사 ?>
+
+		<?php echo visit('theme/shop_basic'); // 접속자 ?>
+	</div>
+<!-- } 상단 끝 -->
+
+	<!-- 콘텐츠 시작 { -->
+	<div id="container">
+		<?php if ((!$bo_table || $w == 's' ) && !defined('_INDEX_')) { ?><div id="wrapper_title"><?php echo $g5['title'] ?></div><?php } ?>
+		<!-- 글자크기 조정 display:none 되어 있음 시작 { -->
+		<div id="text_size">
+			<button class="no_text_resize" onclick="font_resize('container', 'decrease');">작게</button>
+			<button class="no_text_resize" onclick="font_default('container');">기본</button>
+			<button class="no_text_resize" onclick="font_resize('container', 'increase');">크게</button>
+		</div>
+		<!-- } 글자크기 조정 display:none 되어 있음 끝 -->

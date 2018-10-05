@@ -20,6 +20,9 @@ $languagePack = G5_URL.'/language/frontend/common/top-search-logo/'.$_COOKIE['se
 ?>
 <?php include_once('cate_nav.php'); ?>
 <link rel="stylesheet" href="/css/magnific-popup.css" />
+<style class="js-control-nav">
+.cate-main-nav > li > ul > li:first-child::after { top: 0px; }
+</style>
 <script src="/js/jquery.magnific-popup.js"></script>
 <script>
 $(function () {
@@ -34,6 +37,43 @@ $(function () {
 
 	$('.select-language > a').on('mouseover', function() {
 		$(this).parent().find('ul').addClass('active');
+	});
+
+	/*
+		== Category menus ==
+		subTop : 각 메뉴의 서브메뉴의 top 값
+		subCnt(Sub menu count) : 서브메뉴(ul)가 있는지 확인 - 0이면 없음
+	*/
+	var mainNav = $('.cate-main-nav > li');
+	var subTop = 0;
+	var navPosCSS = '';
+	var enter = '\n\r';
+
+	var i = 0;
+	var mainCnt = 0;
+	mainNav.each(function() {
+		subTop = (i * 38) * -1;
+		subAfterTop = (i * 38);
+		subCnt = $(this).find('ul').length;
+		mainCnt = i + 1;
+
+		if(subCnt > 0) {
+			// alert($(this).find('a').text());
+			// alert($(this).find('ul').html());
+			// alert(subTop);
+			// alert(subAfterTop);
+			$(this).find('.cate-sub-nav').css({
+				top: subTop
+			});
+			navPosCSS += '.cate-main-nav > li:nth-child(' + (i + 1) + ') > ul > li:first-child::after { top: ' + subAfterTop + 'px; }';
+			// it at last style sheet do not enter key
+			if(mainNav.length > mainCnt) {
+				navPosCSS += enter;
+			}
+			
+		}
+		$('.js-control-nav').text(navPosCSS);
+		i++;
 	});
 });
 </script>
@@ -177,11 +217,9 @@ function search_submit(f) {
 			cache: false,
 			timeout: 30000,
 			success: function(json) {
-				//alert(json.searchWordTwoCharactor);
 				bootbox.alert({
 				    message: '<h6>' + json.searchWordTwoCharactor + '</h6>',
 				    callback: function () {
-				        //console.log('This was logged in the callback!');
 				        return false;
 				    }
 				});
@@ -190,7 +228,6 @@ function search_submit(f) {
 				jQuery("div").html("<div>" + textStatus + " (HTTP-" + xhr.status + " / " + errorThrown + ")</div>" );
 			}
 		});
-		//alert("<?php echo($topSearch['searchWordTwoCharactor']); ?>");
 		f.q.select();
 		f.q.focus();
 		return false;
@@ -199,6 +236,7 @@ function search_submit(f) {
 }
 </script>
 <!-- END :: top -->
+<!-- BIGIN :: right show menu click is show -->
 <div id="side_menu">
 	<button type="button" id="btn_sidemenu" class="btn_sidemenu_cl">
 		<i class="fa fa-outdent" aria-hidden="true"></i>
@@ -226,6 +264,7 @@ function search_submit(f) {
 		<?php include_once(G5_SHOP_SKIN_PATH.'/boxcommunity.skin.php'); // 커뮤니티 ?>
 	</div>
 </div>
+<!-- END :: right show menu click is show -->
 	<? /*
 	<div id="aside">
 

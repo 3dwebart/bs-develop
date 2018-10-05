@@ -9,17 +9,6 @@ if (G5_IS_MOBILE) {
 define("_INDEX_", TRUE);
 include_once(G5_THEME_SHOP_PATH.'/shop.main.head.php');
 ?>
-<style>
-.carousel img {
-	min-width: 100%;
-	max-width: 100%;
-}
-.carousel-item {
-	height: 500px;
-	overflow: hidden;
-}
-
-</style>
 <script>
 (function($) {
 	var fullWidth = 0;
@@ -35,6 +24,7 @@ include_once(G5_THEME_SHOP_PATH.'/shop.main.head.php');
 	});
 })(jQuery);
 </script>
+<script src="<?php echo(G5_URL); ?>/js/shop.js"></script>
 <div id="sc_slide" class="carousel slide" data-ride="carousel">
 
   <!-- Indicators -->
@@ -101,6 +91,7 @@ include_once(G5_THEME_SHOP_PATH.'/shop.main.head.php');
 	$list->set_view('it_price', true);
 	$list->set_view('it_icon', true);
 	$list->set_view('sns', true);
+	$list->set_view('it_star_score', true); // 별점 보이기
 	echo $list->run();
 	?>
 </section>
