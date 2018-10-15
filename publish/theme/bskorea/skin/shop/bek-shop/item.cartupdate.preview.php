@@ -34,6 +34,10 @@ $count = count($_POST['it_id']);
 if ($count < 1)
 	die('장바구니에 담을 상품을 선택하여 주십시오.');
 
+$sw_direct_item = $_POST['sw_direct_item'];
+
+$sw_direct = $sw_direct_item[0];
+
 $ct_count = 0;
 for($i=0; $i<$count; $i++) {
 	$it_id = $_POST['it_id'][$i];
@@ -134,7 +138,7 @@ for($i=0; $i<$count; $i++) {
 
 	// 바로구매에 있던 장바구니 자료를 지운다.
 	if($i == 0 && $sw_direct)
-		sql_query(" delete from {$g5['g5_shop_cart_table']} where od_id = '$tmp_cart_id' and ct_direct = 1 ", false);
+		sql_query(" DELETE FROM {$g5['g5_shop_cart_table']} WHERE od_id = '$tmp_cart_id' AND ct_direct = 1 ", false);
 
 	// 장바구니에 Insert
 	// 바로구매일 경우 장바구니가 체크된것으로 강제 설정
@@ -237,5 +241,18 @@ for($i=0; $i<$count; $i++) {
 		sql_query($sql);
 }
 
-die('OK');
+if($sw_direct_item[0] == 0) {
+	goto_url(G5_SHOP_URL.'/cart.php');
+} else if($sw_direct_item[0] == 1) {
+?>
+<script>
+	setTimeout(function() {
+		location.href = '<?php echo G5_SHOP_URL; ?>/orderform.php';
+	}, 500);
+	
+	//location.href="notice/List.jsp";
+</script>
+<?
+	//goto_url(G5_SHOP_URL.'/orderform.php');
+}
 ?>

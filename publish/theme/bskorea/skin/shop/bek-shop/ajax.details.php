@@ -37,14 +37,15 @@ div[class^="col-"] { color: #ffffff; }
 .thumb-img img { margin-top: 25%; transform: translateY(-50%); }
 .bold { font-weight: bold; }
 .img-wrap {  }
-.content-wrap { display: flex; flex-direction: column; justify-content: space-between; }
+.content-wrap form { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
 .content-wrap .content > div { background-color: rgba(0, 0, 0, .5); padding: 10px 0; position: relative; border-bottom: 1px dotted #efefef; }
 .content-wrap .content > div:first-child { border-top: 2px solid #efefef; }
 .content-wrap .content > div:last-child { border-bottom: 2px solid #efefef; }
 .content-wrap .content > div > div { font-size: 1.125rem; }
 .content-wrap .content > div > div.arrow-right:after { content: ''; position: absolute; border-left: 5px solid #ffffff; border-right: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; right: 10px; }
-.content-wrap .buttons > div { justify-content: flex-end; }
+/*.content-wrap .buttons > div { justify-content: flex-end; }*/
 </style>
+<script src="<?php echo G5_JS_URL ?>/bootbox.js"></script>
 <div class="detail-wrap">
 	<h1 class="title"><?php echo($row['it_name']); ?></h1>
 	<div class="row mt-4">
@@ -77,7 +78,12 @@ div[class^="col-"] { color: #ffffff; }
 			</div>
 		</div>
 		<div class="col-5 content-wrap">
-			<form id="flist_<?php echo $row['it_id']; ?>" name="flist_<?php echo $row['it_id']; ?>" onsubmit="return false;">
+			<form id="flist_<?php echo $row['it_id']; ?>" name="flist_<?php echo $row['it_id']; ?>" class="ajax-detail-form">
+				<input type="hidden" name="it_id[]" value="<?php echo $row['it_id']; ?>">
+				<input type="hidden" name="it_name[]" value="<?php echo stripslashes($row['it_name']); ?>">
+				<input type="hidden" name="it_price[]" value="<?php echo get_price($row); ?>">
+				<input type="hidden" name="it_stock[]" value="<?php echo get_it_stock_qty($row['it_id']); ?>">
+				<input type="hidden" name="sw_direct_item[]" value="" id="sw_direct_item" />
 				<div class="content">
 					<div class="row">
 						<div class="col-5 bold arrow-right">
@@ -139,7 +145,7 @@ div[class^="col-"] { color: #ffffff; }
 						<div class='option'>
 							<div class='option-body'>
 								<!-- /* BIGIN :: option */ -->
-								<script src="<?php echo G5_SHOP_SKIN_URL; ?>/option.js"></script>
+								<!-- <script src="<?php echo G5_SHOP_SKIN_URL; ?>/option.js"></script> -->
 								<?php
 								include_once(str_replace(G5_URL, G5_PATH, G5_SHOP_SKIN_URL).'/option.lib.php');
 								// 상품 선택옵션
@@ -182,7 +188,6 @@ div[class^="col-"] { color: #ffffff; }
 										</tbody>
 									</table>
 								</div>
-
 						        <!-- 총 구매액 -->
 						        <div id="sit_tot_price"></div>
 								<?php
@@ -193,7 +198,9 @@ div[class^="col-"] { color: #ffffff; }
 						</div>
 						<!-- // END :: option -->
 					</div>
-					<?php } ?>
+					<?php
+						}
+					?>
 					<!--
 					<div class="row">
 						<div class="col-5 bold">
@@ -208,8 +215,13 @@ div[class^="col-"] { color: #ffffff; }
 				<div class="buttons">
 					<div class="input-group">
 						<div class="btn-group">
-							<button class="btn btn-success btn_add_cart" data-btn-type="cart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
-							<button class="btn btn-primary btn_add_buy" data-btn-type="get"><i class="fa fa-credit-card"></i> 바로구매</button>
+							<button type="button" class="btn btn-success btn_add_cart2" data-btn-type="cart">
+								<i class="fa fa-shopping-cart"></i> 장바구니
+							</button>
+							<button type='submit' class='btn btn-primary ml-2 btn_add_buy2' data-btn-type='get'>
+								<i class="fa fa-credit-card"></i> 바로구매
+							</button>
+							<!-- onclick="itemBuySubmit('flist_<?php echo $row["it_id"]; ?>')"-->
 						</div>
 					</div>
 				</div>
@@ -217,6 +229,13 @@ div[class^="col-"] { color: #ffffff; }
 		</div>
 	</div>
 </div>
+<?php
+$sql2 = "SELECT count(io_id) AS cnt
+		FROM g5_shop_item_option 
+		WHERE it_id = '$it_id'"; // 1537433559
+$row2 = sql_fetch($sql2);
+$cnt = $row2['cnt'];
+?>
 <script>
 (function($) {
 	/* BIGIN :: 하단 이미지 버튼의 첫번째 항목에 active */
@@ -234,5 +253,369 @@ div[class^="col-"] { color: #ffffff; }
 	jQuery('.content-wrap .option').addClass('col-12 p-0');
 	jQuery('.content-wrap .option .list_item_option table.sit_ov_tbl colgroup col').eq(0).attr('width', '41.666667%');
 	jQuery('.content-wrap .option .list_item_option table.sit_ov_tbl colgroup col').eq(1).attr('width', '58.333333%');
+	/* BIGIN :: 건체 가격 및 갯수 */
+	/*  */
+	// 장바구니 담기버튼
+	/*
+
+	jQuery('.ajax-detail-form .buttons button').on('click', function() {
+		var btnType = jQuery(this).data('btn-type');
+		var cartUrl = '<?php echo(G5_SHOP_SKIN_URL); ?>/item.cartupdate.php';
+		if(btnType == 'cart') {
+			jQuery(this).closest('form').find('input[id^="sw_direct_"]').val(0);
+			jQuery(this).closest('form').attr('action', cartUrl);
+		} else if(btnType == 'get') {
+			jQuery(this).closest('form').find('input[id^="sw_direct_"]').val(1);
+			jQuery(this).closest('form').attr('action', '/shop/orderform.php');
+		}
+		jQuery(this).closest('form').attr('method', 'post');
+		jQuery(this).closest('form').submit();
+	});
+	*/
+	// 장바구니 담기버튼
+	jQuery('button.btn_add_cart2').on('click', function() {
+		var $frm = $(this.form);
+
+		jQuery(this).closest('form')
+		.find('.list_item_option')
+		.find('input[id^="#sw_direct_"]').val(0);
+		jQuery(this).closest('form')
+		.find('input[id^="sw_direct_item"]').val(0);
+
+		$frm.attr('method', 'post');
+		$frm.attr('action', g5_shop_css_url+"/item.cartupdate.preview.php");
+		$frm.submit();
+
+		// 메세지 레이어 닫기
+		//cart_msg_layer();
+		//set_option_value($frm, $(this));
+
+		return false;
+	});
+	$("button.btn_add_buy2").click(function() {
+		var $frm = $(this.form);
+		var $action = '/shop/orderform.php?sw_direct=1';
+		$(this).closest('form')
+		.find('.list_item_option')
+		.find('input[id^="#sw_direct_"]').val(1);
+		jQuery(this).closest('form')
+		.find('input[id^="sw_direct_item"]').val(1);
+
+		$frm.attr('method', 'post');
+		$frm.attr('action', g5_shop_css_url+"/item.cartupdate.preview.php");
+		$frm.submit();
+
+		//set_option_value($frm, $(this));
+	});
+	function itemBuySubmit2(v) {
+		//$frm = 
+		//var f = document.forms[v];
+		var f = document.getElementById(v);
+		//f.url.value = '/shop/orderform.php?sw_direct=1';
+		f.action = '/shop/orderform.php';
+		f.method = 'post';
+		f.submit();
+		//document.forms[v].submit();
+		//document.getElementById(v).submit();
+		return true;
+	}
+
+	function set_option_value($frm, $btn)
+	{
+		var $sel = $frm.find("select.it_option");
+		var it_name = $frm.find("input[name^=it_name]").val();
+		var it_price = parseInt($frm.find("input[name^=it_price]").val());
+		var id = "";
+		var value, info, sel_opt, item, price, stock, run_error = false;
+		var option = sep = "";
+		var btnType = $btn.data('btn-type');
+		// if(btnType == 'cart') {
+		// 	$('#sw_direct').val(0);
+		// } else if(btnType == 'buy') {
+		// 	$('#sw_direct').val(1);
+		// }
+
+		if($sel.length > 0) { // size( ) 3.0 이후부터 사라짐
+			info = $frm.find("select.it_option:last").val().split(",");
+
+			$sel.each(function(index) {
+				value = $(this).val();
+				item = $(this).closest("tr").find("th label").text();
+
+				if(!value) {
+					run_error = true;
+					return false;
+				}
+
+				// 옵션선택정보
+				sel_opt = value.split(",")[0];
+
+				if(id == "") {
+					id = sel_opt;
+				} else {
+					id += chr(30)+sel_opt;
+					sep = " / ";
+				}
+
+				option += sep + item + ":" + sel_opt;
+			});
+
+			if(run_error) {
+				alert(it_name+"의 "+item+"을(를) 선택해 주십시오.");
+				return false;
+			}
+
+			price = info[1];
+			stock = info[2];
+		} else {
+			price = 0;
+			stock = $frm.find("input[name^=it_stock]").val();
+			option = it_name;
+		}
+
+		// 금액 음수 체크
+		if(it_price + parseInt(price) < 0) {
+			alert("구매금액이 음수인 상품은 구매할 수 없습니다.");
+			return false;
+		}
+
+		// 옵션 선택정보 적용
+		$frm.find("input[name^=io_id]").val(id);
+		$frm.find("input[name^=io_value]").val(option);
+		$frm.find("input[name^=io_price]").val(price);
+		// 장바구니 담기
+
+		//*
+		$.post(
+			g5_shop_css_url+"/item.cartupdate.preview.php",
+			$frm.serialize(),
+			function(error) {
+				if(error != "OK") {
+					alert(error.replace(/\\n/g, "\n"));
+					return false;
+				}
+
+				if(btnType == 'cart') {
+					bootbox.confirm({
+						message: "<h6>상품이 장바구니에 담겼습니다.</h6><h4>지금 확인하시겠습니까?</h4>",
+						buttons: {
+							confirm: {
+								label: 'Yes',
+								className: 'btn-success'
+							},
+							cancel: {
+								label: 'No',
+								className: 'btn-danger'
+							}
+						},
+						callback: function (result) {
+							console.log('This was logged in the callback: ' + result);
+							if(result == true) {
+								$(location).attr('href', g5_shop_url + "/cart.php");
+							}
+						}
+					});
+				} else if(btnType == 'get') {
+					//$(location).attr('href', g5_shop_url + "/orderform.php");
+					alert('get button click');
+					bootbox.confirm({
+						message: "<h6>바로주문</h6><h4>바로구매를 진행 하시겠습니까?</h4>",
+						buttons: {
+							confirm: {
+								label: 'Yes',
+								className: 'btn-success'
+							},
+							cancel: {
+								label: 'No',
+								className: 'btn-danger'
+							}
+						},
+						callback: function (result) {
+							console.log('This was logged in the callback: ' + result);
+							if(result == true) {
+								//$(location).attr('href', g5_shop_url + "/cart.php");
+							}
+						}
+					});
+				}
+			}
+		);
+		//*/
+	}
+	var optLength = 0;
+	var onChgOpt = 0;
+	var it_name = '<?php echo($row["it_name"]); ?>';
+	var it_id = Number('<?php echo($row["it_id"]); ?>');
+	var item_ct_qty = Number('<?php echo($item_ct_qty); ?>');
+	var it_price = Number('<?php echo($row["it_price"]); ?>');
+	var cnt = Number('<?php echo $cnt; ?>');
+
+	//it_name = jQuery(this).find('.option-header h3').text();
+	//it_id = jQuery(this).find('input[id^="it_id_"]').val();
+	//it_price = Number(jQuery(this).find('input[id^="it_price_"]').val());
+	//item_ct_qty = Number(jQuery(this).find('input[name^="tmp_ct_qty"]').val());
+	if(item_ct_qty == 0) {
+		item_ct_qty = 1;
+	}
+
+	optLength = cnt;
+	if(optLength == 0) {
+		priceWrap = '';
+		priceWrap += '<div class="info-wrap">';
+		priceWrap += '<div class="info row">';
+		priceWrap += '<div class="col-7">';
+		priceWrap += it_name;
+		priceWrap += '</div>';
+		priceWrap += '<div class="col-5">';
+		priceWrap += '<div class="Increase-Decrease">';
+		priceWrap += '<div class="input-group">';
+		priceWrap += '<span class="input-group-btn">';
+		priceWrap += '<button type="button" class="btn btn-danger minus">';
+		priceWrap += '<i class="fa fa-minus"></i>';
+		priceWrap += '</button>';
+		priceWrap += '</span>';
+		priceWrap += '<input type="text" name="ct_qty[' + it_id + '][]" value="' + item_ct_qty + '" class="form-control ct_qty" id="ct_qty_' + it_id + '" />';
+		//priceWrap += '<input type="text" class="form-control" />';
+		priceWrap += '<span class="input-group-btn">';
+		priceWrap += '<button type="button" class="btn btn-info plus">';
+		priceWrap += '<i class="fa fa-plus"></i>';
+		priceWrap += '</button>';
+		priceWrap += '</span>';
+		priceWrap += '</div>'; // END :: input-group
+		priceWrap += '</div>'; // END :: Increase-Decrease
+		priceWrap += '</div>'; // END :: col-*
+		priceWrap += '</div>'; // END :: info/row
+		priceWrap +=  '<div class="list-ea-price text-left row">';
+		priceWrap +=  '<div class="col-6">';
+		priceWrap +=  '<span>단가 : </span>';
+		priceWrap +=  '</div>';
+		priceWrap +=  '<div class="col-6 text-right">';
+		priceWrap +=  '<span class="ea-price">' + addComma(it_price) + '원</span>';
+		priceWrap +=  '</div>';
+		priceWrap +=  '</div>';
+		priceWrap +=  '<div class="list-tot-price text-left row">';
+		priceWrap +=  '<div class="col-6">';
+		priceWrap +=  '<span>TOTAL : </span>';
+		priceWrap +=  '</div>';
+		priceWrap +=  '<div class="col-6 text-right">';
+		priceWrap +=  '<span class="price">10,000</span>';
+		priceWrap +=  '</div>';
+		priceWrap +=  '</div>';
+		priceWrap +=  '</div>';
+		jQuery('.content-wrap .content').append(priceWrap);
+	} else { // option 이 있을  때
+		//optionLength = jQuery(this).find('.it_option').length;
+		optionLength = jQuery('.detail-wrap select.it_option').length;
+		jQuery('.option').addClass('list-on');
+		jQuery('.it_option').eq(optionLength - 1).on('change', function() {
+			j = 0;
+			it_id = jQuery(this).closest('.option').find('input[name^="it_id"]').val();
+			io_type = jQuery(this).closest('.option').find('input[name^="io_type"]').val();
+			io_id = '';
+			io_price = jQuery(this).closest('.option').find('input[name^="io_price"]').val();
+			io_stock = 0;
+			priceWrap = '';
+			if(onChgOpt == 0) {
+				priceWrap += '<div class="info-wrap">';
+			}
+			priceWrap += '<div class="row info">';
+			priceWrap += '<div class="col-7 opt-cfgration">';
+			optionName = '';
+			optionLength = jQuery(this).closest('.option-body').find('.it_option').length;
+			jQuery(this).closest('.option-body').find('.it_option').each(function() {
+				OptionLabelName = jQuery(this).closest('tr').find('label').text();
+				io_val = jQuery(this).val().split(',');
+				if(j != 0) {
+					optionName += ' / ';
+					io_id += chr(30);
+				}
+				io_id += io_val[0];
+				optionName += OptionLabelName + ': ';
+				if((j + 1) == optionLength) { // Last option selection
+					tmpVal = jQuery(this).val().split(',');
+					// 0 : option name / 1 : option price / 2 : everything ea
+					optionName += tmpVal[0];
+					optionPrice = tmpVal[1];
+					io_price = tmpVal[1];
+					io_stock = tmpVal[2];
+				} else {
+					optionName += jQuery(this).val();
+				}
+				j++;
+			});
+			//alert(optionName);
+			//priceWrap += it_name;
+			priceWrap += optionName;
+			priceWrap += '</div>';
+
+			priceWrap += '<div class="col-5">';
+			priceWrap += '<div class="Increase-Decrease">';
+			priceWrap += '<div class="input-group">';
+			priceWrap += '<span class="input-group-btn">';
+			priceWrap += '<button type="button" class="btn btn-danger minus">';
+			priceWrap += '<i class="fa fa-minus"></i>';
+			priceWrap += '</button>';
+			priceWrap += '</span>';
+			priceWrap += '<input type="hidden" name="io_type[' + it_id + '][]" value="' + io_type + '">';
+			priceWrap += '<input type="hidden" name="io_id[' + it_id + '][]" value="' + io_id + '">';
+			priceWrap += '<input type="hidden" name="io_value[' + it_id + '][]" value="' + optionName + '">';
+			priceWrap += '<input type="hidden" name="io_price[' + it_id + '][]" class="io_price" value="' + io_price + '">';
+			priceWrap += '<input type="hidden" class="io_stock" value="' + io_stock + '">';
+			priceWrap += '<input type="hidden" name="listCartOpt[' + it_id + '][]" value="1">';
+			/**/
+			priceWrap += '<input type="hidden" name="list_io_type[' + it_id + '][]" value="' + io_type + '">';
+			priceWrap += '<input type="hidden" name="list_io_id[' + it_id + '][]" value="' + io_id + '">';
+			priceWrap += '<input type="hidden" name="list_io_value[' + it_id + '][]" value="' + optionName + '">';
+			priceWrap += '<input type="hidden" name="list_io_price[' + it_id + '][]" value="' + io_price + '">';
+			priceWrap += '<input type="hidden" class="list_io_stock" value="' + io_stock + '">';
+			priceWrap += '<input type="hidden" name="listCartOpt[' + it_id + '][]" value="1">';
+			/**/
+			priceWrap += '<input type="text" name="ct_qty[' + it_id + '][]" value="' + item_ct_qty + '" class="form-control ct_qty" id="ct_qty_' + it_id + '_' + onChgOpt + '" />';
+			priceWrap += '<span class="input-group-btn">';
+			priceWrap += '<button type="button" class="btn btn-info plus">';
+			priceWrap += '<i class="fa fa-plus"></i>';
+			priceWrap += '</button>';
+			priceWrap += '<button class="btn btn-dark info-close"><i class="fa fa-close"></i></button>';
+			priceWrap += '</span>';
+			priceWrap += '</div>'; // END :: input-group
+			priceWrap += '</div>'; // END :: Increase-Decrease
+			priceWrap += '</div>'; // END :: col-*
+			priceWrap += '</div>'; // END :: info/row
+			if (onChgOpt == 0) {
+				priceWrap += '</div>'; // END :: info-wrap
+				priceWrap +=  '<div class="list-tot-price text-left row">';
+				priceWrap +=  '<div class="col-6">';
+				priceWrap +=  '<span>TOTAL : </span>';
+				priceWrap +=  '</div>';
+				priceWrap +=  '<div class="col-6 text-right">';
+				priceWrap +=  '<span class="price">10,000</span>';
+				priceWrap +=  '</div>';
+				priceWrap +=  '</div>';
+				jQuery(this).closest('.option-body').append(priceWrap);
+			} else {
+				jQuery(this).closest('.option-body').find('.info-wrap').append(priceWrap);
+			}
+
+			var tmpEa = 0;
+			var tmpPrice = 0;
+			var tmpOptPrice = 0;
+			var tmpArea = '';
+			tmpEa = $(this).closest('.option-body').find('input[name^=ct_qty]').val();
+			tmpPrice = $(this).closest('.option-body').find('input[id^="it_price_"]').val();
+			tmpOptPrice = optionPrice;
+			tmpArea = $(this).closest('.list-payment');
+			tmpEa = Number(tmpEa);
+			tmpPrice = Number(tmpPrice);
+			tmpOptPrice = Number(tmpOptPrice);
+			arrNo = onChgOpt;
+			totalPriceCalc(tmpArea, arrNo);
+
+			onChgOpt++;
+		});
+		jQuery(document).on('click', '.info-close', function() {
+			jQuery(this).closest('.info').remove();
+		});
+	}
+	/* END :: 건체 가격 및 갯수 */
 })(jQuery);
 </script>

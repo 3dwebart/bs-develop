@@ -144,6 +144,14 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 	echo "</div>".PHP_EOL;
 	echo "<div class='option-body'>".PHP_EOL;
 
+	/*
+	$optionSql = "SELECT io_id FROM {$g5['g5_shop_item_option_table']} WHERE io_type = '0' AND it_id = '$it_id' AND io_use = '1' ORDER BY io_no ASC ";
+	$optionResult = sql_query($optionSql);
+	for ($i=0; $i < $optRow = sql_fetch_array($optionResult); $i++) { 
+		# code...
+	}
+	*/
+
 	/* BIGIN :: option */
 	if($is_orderable) {
 		$item_ct_qty = 1;
@@ -152,15 +160,13 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 		}
 ?>
 	<div class="list_item_option">
-		<input type="hidden" name="it_id[]" value="<?php echo $row['it_id']; ?>" id="it_id">
+		<input type="hidden" name="it_id[]" value="<?php echo $row['it_id']; ?>" id="it_id_<?php echo $row['it_id']; ?>">
 		<input type="hidden" name="it_name[]" value="<?php echo stripslashes($row['it_name']); ?>">
 		<input type="hidden" name="it_price[]" value="<?php echo get_price($row); ?>" id="it_price_<?php echo $row['it_id']; ?>">
 		<input type="hidden" name="it_stock[]" value="<?php echo get_it_stock_qty($row['it_id']); ?>">
+		<input type="hidden" name="tmp_ct_qty[<?php echo $row['it_id']; ?>][]" value="<?php echo $item_ct_qty; ?>" />
 		<input type="hidden" name="io_type[<?php echo $row['it_id']; ?>][]" value="0">
-		<input type="hidden" name="io_id[<?php echo $row['it_id']; ?>][]" value="">
-		<input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][]" value="">
-		<input type="hidden" name="io_price[<?php echo $row['it_id']; ?>][]" value="">
-		<!-- <input type="hidden" name="ct_qty[<?php echo $row['it_id']; ?>][]" value="<?php echo $item_ct_qty; ?>"> -->
+		
 		<input type="hidden" name="sw_direct[<?php echo $row['it_id']; ?>][]" value="" id="sw_direct_<?php echo $row['it_id']; ?>">
 		<table class="sit_ov_tbl">
 			<colgroup>
@@ -230,31 +236,38 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 			}
 		});
 	});
+	/* BIGIN :: 리스트에서  카트 아이콘을 클릭했을 때 해당 아이템의 옵션 및 가격 정보가 표시됨 */
 	jQuery(document).on('click', '.get-cart-payment', function() {
 		jQuery(this).parent().parent().parent().find('.list-payment').addClass('on');
 		return false;
 	});
+	/* END :: 리스트에서  카트 아이콘을 클릭했을 때 해당 아이템의 옵션 및 가격 정보가 표시됨 */
+	/* BIGIN :: 리스트에 올라온 옵션 및 가격 정보가 마우스가 영역 바깥으로 벗어나면 내려가게(사라지게) */
 	jQuery(document).on('mouseleave', '.item-wrap', function() {
-		//jQuery(this).find('.list-payment').removeClass('on');
-		//jQuery(this).closest('form')[0].reset();
-		//jQuery(this).closest('form').find('.list-tot-price').html('');
+		jQuery(this).find('.list-payment').removeClass('on');
+		jQuery(this).closest('form')[0].reset();
+		jQuery(this).closest('form').find('.list-tot-price').html('');
 		onChgOpt = 0;
-		//if(jQuery(this).find('.info-close').length > 0) {
-			//alert(1111);
-		//	jQuery(this).find('.info').remove();
-		//}
+		if(jQuery(this).find('.info-close').length > 0) {
+			jQuery(this).find('.info-wrap').remove();
+		}
+		jQuery(this).closest('form').find('.btn_add_cart').blur();
+		jQuery(this).closest('form').find('.btn_add_buy').blur();
 	});
+	/* END :: 리스트에 올라온 옵션 및 가격 정보가 마우스가 영역 바깥으로 벗어나면 내려가게(사라지게) */
+	/* BIGIN :: 리스트에 올라온 옵션 및 가격 정보가 닫기버튼을 클릭하면 내려가게(사라지게) */
 	jQuery(document).on('click', '.list-payment-close', function() {
 		jQuery(this).parent().parent().parent().parent().removeClass('on');
 		jQuery(this).closest('form')[0].reset();
 		jQuery(this).closest('form').find('.list-tot-price').html('');
 		onChgOpt = 0;
 		if(jQuery(this).find('.info-close').length > 0) {
-			jQuery(this).find('.info').remove();
+			jQuery(this).find('.info-wrap').remove();
 		}
+
 		return false;
 	});
-	//jQuery('.list-item-option').find('.it_option').each(function() {});
+	/* END :: 리스트에 올라온 옵션 및 가격 정보가 닫기버튼을 클릭하면 내려가게(사라지게) */
 	var optionLength = 0;
 	var it_name = "";
 	var it_id = "";
@@ -264,18 +277,23 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 	var optionName = new Array();
 	var optionPrice = new Array();
 	var i = 0, j = 0;
+	var arrNo = 0;
+	var item_ct_qty = 0;
+	var io_type = 0;
 	jQuery('.option').each(function() {
 		optionLength = jQuery(this).find('.it_option').length;
 		it_name = jQuery(this).find('.option-header h3').text();
-		it_id = jQuery(this).find('#it_id').val();
+		it_id = jQuery(this).find('input[id^="it_id_"]').val();
 		it_price = Number(jQuery(this).find('input[id^="it_price_"]').val());
-		//alert('price : ' + jQuery(this).find('input[id^="it_price_"]').val());
+		item_ct_qty = Number(jQuery(this).find('input[name^="tmp_ct_qty"]').val());
 
 		jQuery(this).find('.it_option').each(function() {
 			//
 		});
 		if(optionLength == 0) { // option 이 없을 때
-			priceWrap[i] = '<div class="info row">';
+			priceWrap[i] = '';
+			priceWrap[i] += '<div class="info-wrap">';
+			priceWrap[i] += '<div class="info row">';
 			priceWrap[i] += '<div class="col-7">';
 			priceWrap[i] += it_name;
 			priceWrap[i] += '</div>';
@@ -283,14 +301,14 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 			priceWrap[i] += '<div class="Increase-Decrease">';
 			priceWrap[i] += '<div class="input-group">';
 			priceWrap[i] += '<span class="input-group-btn">';
-			priceWrap[i] += '<button type="button" class="btn btn-danger">';
+			priceWrap[i] += '<button type="button" class="btn btn-danger minus">';
 			priceWrap[i] += '<i class="fa fa-minus"></i>';
 			priceWrap[i] += '</button>';
 			priceWrap[i] += '</span>';
-			priceWrap[i] += '<input type="text" name="ct_qty[' + it_id + '][]" value="<?php echo $item_ct_qty; ?>" class="form-control ct_qty" />';
+			priceWrap[i] += '<input type="text" name="ct_qty[' + it_id + '][]" value="' + item_ct_qty + '" class="form-control ct_qty" id="ct_qty_' + it_id + '_' + onChgOpt + '" />';
 			//priceWrap[i] += '<input type="text" class="form-control" />';
 			priceWrap[i] += '<span class="input-group-btn">';
-			priceWrap[i] += '<button type="button" class="btn btn-info">';
+			priceWrap[i] += '<button type="button" class="btn btn-info plus">';
 			priceWrap[i] += '<i class="fa fa-plus"></i>';
 			priceWrap[i] += '</button>';
 			priceWrap[i] += '</span>';
@@ -298,7 +316,7 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 			priceWrap[i] += '</div>'; // END :: Increase-Decrease
 			priceWrap[i] += '</div>'; // END :: col-*
 			priceWrap[i] += '</div>'; // END :: info/row
-			priceWrap[i] +=  '<div class="list-tot-price text-left row">';
+			priceWrap[i] +=  '<div class="list-ea-price text-left row">';
 			priceWrap[i] +=  '<div class="col-6">';
 			priceWrap[i] +=  '<span>단가 : </span>';
 			priceWrap[i] +=  '</div>';
@@ -314,32 +332,41 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 			priceWrap[i] +=  '<span class="price">10,000</span>';
 			priceWrap[i] +=  '</div>';
 			priceWrap[i] +=  '</div>';
+			priceWrap[i] +=  '</div>';
 			jQuery(this).find('.option-body').append(priceWrap[i]);
 		} else { // option 이 있을  때
+			jQuery(this).closest('.option').addClass('list-on');
 			jQuery(this).find('.it_option').eq(optionLength - 1).on('change', function() {
 				j = 0;
+				it_id = jQuery(this).closest('.option').find('input[id^="it_id_"]').val();
+				io_type = jQuery(this).closest('.option').find('input[name^="io_type"]').val();
+				io_id = '';
+				io_price = jQuery(this).closest('.option').find('input[name^="io_price"]').val();
+				io_stock = 0;
 				priceWrap[i] = '';
 				if(onChgOpt == 0) {
 					priceWrap[i] += '<div class="info-wrap">';
 				}
 				priceWrap[i] += '<div class="row info">';
-				priceWrap[i] += '<div class="col-7">';
+				priceWrap[i] += '<div class="col-7 opt-cfgration">';
 				optionName[i] = '';
 				optionLength = jQuery(this).closest('.option-body').find('.it_option').length;
 				jQuery(this).closest('.option-body').find('.it_option').each(function() {
 					OptionLabelName = jQuery(this).closest('tr').find('label').text();
+					io_val = jQuery(this).val().split(',');
 					if(j != 0) {
 						optionName[i] += ' / ';
+						io_id += chr(30);
 					}
-					optionName[i] += OptionLabelName + ' : ';
-					console.log('j : ' + (j + 1) + ' // len : ' + optionLength);
+					io_id += io_val[0];
+					optionName[i] += OptionLabelName + ': ';
 					if((j + 1) == optionLength) { // Last option selection
 						tmpVal = jQuery(this).val().split(',');
+						// 0 : option name / 1 : option price / 2 : everything ea
 						optionName[i] += tmpVal[0];
 						optionPrice[i] = tmpVal[1];
-						console.log(tmpVal[0]);
-						console.log('option price : ' + optionPrice[i]);
-						console.log('option price : ' + jQuery(this).val());
+						io_price = tmpVal[1];
+						io_stock = tmpVal[2];
 					} else {
 						optionName[i] += jQuery(this).val();
 					}
@@ -349,16 +376,32 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 				//priceWrap[i] += it_name;
 				priceWrap[i] += optionName[i];
 				priceWrap[i] += '</div>';
+
 				priceWrap[i] += '<div class="col-5">';
 				priceWrap[i] += '<div class="Increase-Decrease">';
 				priceWrap[i] += '<div class="input-group">';
 				priceWrap[i] += '<span class="input-group-btn">';
-				priceWrap[i] += '<button type="button" class="btn btn-danger">';
+				priceWrap[i] += '<button type="button" class="btn btn-danger minus">';
 				priceWrap[i] += '<i class="fa fa-minus"></i>';
 				priceWrap[i] += '</button>';
 				priceWrap[i] += '</span>';
-				priceWrap[i] += '<input type="text" name="ct_qty[' + it_id + '][]" value="<?php echo $item_ct_qty; ?>" class="form-control ct_qty" />';
-				priceWrap[i] += '<button type="button" class="btn btn-info">';
+				priceWrap[i] += '<input type="hidden" name="io_type[' + it_id + '][]" value="' + io_type + '">';
+				priceWrap[i] += '<input type="hidden" name="io_id[' + it_id + '][]" value="' + io_id + '">';
+				priceWrap[i] += '<input type="hidden" name="io_value[' + it_id + '][]" value="' + optionName[i] + '">';
+				priceWrap[i] += '<input type="hidden" name="io_price[' + it_id + '][]" class="io_price" value="' + io_price + '">';
+				priceWrap[i] += '<input type="hidden" class="io_stock" value="' + io_stock + '">';
+				priceWrap[i] += '<input type="hidden" name="listCartOpt[' + it_id + '][]" value="1">';
+				/**/
+				priceWrap[i] += '<input type="hidden" name="list_io_type[' + it_id + '][]" value="' + io_type + '">';
+				priceWrap[i] += '<input type="hidden" name="list_io_id[' + it_id + '][]" value="' + io_id + '">';
+				priceWrap[i] += '<input type="hidden" name="list_io_value[' + it_id + '][]" value="' + optionName[i] + '">';
+				priceWrap[i] += '<input type="hidden" name="list_io_price[' + it_id + '][]" value="' + io_price + '">';
+				priceWrap[i] += '<input type="hidden" class="list_io_stock" value="' + io_stock + '">';
+				priceWrap[i] += '<input type="hidden" name="listCartOpt[' + it_id + '][]" value="1">';
+				/**/
+				priceWrap[i] += '<input type="text" name="ct_qty[' + it_id + '][]" value="' + item_ct_qty + '" class="form-control ct_qty" id="ct_qty_' + it_id + '_' + onChgOpt + '" />';
+				priceWrap[i] += '<span class="input-group-btn">';
+				priceWrap[i] += '<button type="button" class="btn btn-info plus">';
 				priceWrap[i] += '<i class="fa fa-plus"></i>';
 				priceWrap[i] += '</button>';
 				priceWrap[i] += '<button class="btn btn-dark info-close"><i class="fa fa-close"></i></button>';
@@ -381,6 +424,21 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 				} else {
 					jQuery(this).closest('.option-body').find('.info-wrap').append(priceWrap[i]);
 				}
+
+				var tmpEa = 0;
+				var tmpPrice = 0;
+				var tmpOptPrice = 0;
+				var tmpArea = '';
+				tmpEa = $(this).closest('.option-body').find('input[name^=ct_qty]').val();
+				tmpPrice = $(this).closest('.option-body').find('input[id^="it_price_"]').val();
+				tmpOptPrice = optionPrice[i];
+				tmpArea = $(this).closest('.list-payment');
+				tmpEa = Number(tmpEa);
+				tmpPrice = Number(tmpPrice);
+				tmpOptPrice = Number(tmpOptPrice);
+				arrNo = onChgOpt;
+				totalPriceCalc(tmpArea, arrNo);
+
 				onChgOpt++;
 			});
 			jQuery(document).on('click', '.info-close', function() {
@@ -389,17 +447,83 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 		}
 		i++;
 	});
+	jQuery(document).on('click', '.Increase-Decrease .minus', function() {
+		var currentArea = jQuery(this).closest('.Increase-Decrease');
+		ctQtyCalc('minus', currentArea);
+	});
+	jQuery(document).on('click', '.Increase-Decrease .plus', function() {
+		var currentArea = jQuery(this).closest('.Increase-Decrease');
+		ctQtyCalc('plus', currentArea);
+	});
 	jQuery(document).on('click touch', '.mfp-close', function(e) {
 		e.preventDefault();
 		$.magnificPopup.close();
 	});
 	jQuery(document).on('keydown', '.ct_qty', function(e) {
 		onlyNumber(e);
-	})
+	});
 })(jQuery);
-function totalPriceCalc(ea, price, optPrice) {
-	// 파라미터 : 갯수, 가격, 옵션가격, 배열로 넣기
-	// 배열 꾸준한 추가 및 총합 계산
+var calcArr = new Array();
+function ctQtyCalc(v, a) {
+	var input = a.find('input[id^="ct_qty_"]');
+	var value = input.val();
+	value = Number(value);
+	if(v == 'minus') {
+		if(value <= 1) {
+			return false;
+		} else {
+			value--;
+		}
+	} else {
+		value++;
+	}
+
+	return input.val(value);
+}
+function totalPriceCalc(area, arrNo) {
+	// 파라미터 : 갯수, 가격, 옵션가격, 해당 블록 영역, 옵션 생성시 배열 인덱스 번호
+	// 배열에 추가/삭제 및 총합 계산
+	/*
+		갯수 : ea / 기본값 : 0
+		가격 : price / 기본값 : 0
+		옵션가격 : optPrice / 기본값 : 0
+		영역 : area / 기본값 : ''
+		배열 인덱스 : arrNo / 기본값 : 0
+	*/
+	var ea = area.find('input[name^="ct_qty"]').val();
+	var price = area.find('input[name^="it_price"]').val();
+	var optPrice = 0;
+	var optLength = 0;
+	var optValue = '';
+	if(area.find('.option').length > 0) {
+		optPrice = area.find('input[name^="io_price"]').val();
+		optLength = area.find('.it_option').length - 1;
+		optValue = area.find('.it_option').eq(optLength).val().split(',');
+		optPrice = Number(optValue[1]);
+	}
+	ea = Number(ea);
+	price = Number(price);
+	optPrice = Number(optPrice);
+	ea = typeof ea !== 'undefined' ? ea : 0;
+	price = typeof price !== 'undefined' ? price : 0;
+	optPrice = typeof optPrice !== 'undefined' ? optPrice : 0;
+	area = typeof area !== 'undefined' ? area : '';
+	arrNo = typeof arrNo !== 'undefined' ? arrNo : 0;
+
+	var calc = 0;
+
+	var totCalc = 0;
+
+	//area.find('')
+	calc = (price + optPrice) * ea;
+
+	calcArr[arrNo] = calc;
+
+	for (var i = 0; i < calcArr.length; i++) {
+		totCalc += calcArr[i];
+	}	
+
+	area.find('.list-tot-price .price').text(addComma(totCalc) + ' 원');
 }
 function addComma(num) {
   var regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -411,7 +535,7 @@ function onlyNumber(event) {
 	var keyID = (event.which) ? event.which : event.keyCode;
 	if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) )
 	{
-		alert(keyID);
+		//alert(keyID);
 	}
 	else
 	{

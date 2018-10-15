@@ -110,7 +110,9 @@ $(function() {
 
 function itemBuySubmit(v) {
 	//$frm = 
-	var f = document.forms[v];
+	//var f = document.forms[v];
+	var f = document.getElementById(v);
+	console.log(f);
 	//f.url.value = '/shop/orderform.php?sw_direct=1';
 	f.action = '/shop/orderform.php';
 	f.method = 'post';
