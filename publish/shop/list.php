@@ -95,6 +95,7 @@ var itemlist_ca_id = "<?php echo $ca_id; ?>";
     if (file_exists($skin_file)) {
 
 		echo '<div id="sct_sortlst">';
+        echo '<div class="container">';
         $sort_skin = $skin_dir.'/list.sort.skin.php';
         if(!is_file($sort_skin))
             $sort_skin = G5_SHOP_SKIN_PATH.'/list.sort.skin.php';
@@ -105,6 +106,7 @@ var itemlist_ca_id = "<?php echo $ca_id; ?>";
         if(!is_file($sub_skin))
             $sub_skin = G5_SHOP_SKIN_PATH.'/list.sub.skin.php';
         include $sub_skin;
+        echo '</div>';
         echo '</div>';
 
         // 총몇개 = 한줄에 몇개 * 몇줄

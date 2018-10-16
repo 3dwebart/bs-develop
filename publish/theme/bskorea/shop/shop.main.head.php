@@ -58,10 +58,6 @@ $(function () {
 		mainCnt = i + 1;
 
 		if(subCnt > 0) {
-			// alert($(this).find('a').text());
-			// alert($(this).find('ul').html());
-			// alert(subTop);
-			// alert(subAfterTop);
 			$(this).find('.cate-sub-nav').css({
 				top: subTop
 			});
@@ -74,6 +70,16 @@ $(function () {
 		}
 		$('.js-control-nav').text(navPosCSS);
 		i++;
+	});
+
+	$(document).on('keydown', function(e) {
+		var key = e.keyCode;
+		var target = $('.cate-nav');
+		if(target.hasClass('on') == true) {
+			if(key == 27) {
+				target.removeClass('on');
+			}
+		}
 	});
 });
 </script>
@@ -102,103 +108,109 @@ if(isset($_SESSION['ss_mb_id'])) {
 	<div class="member-nav"></div>
 	<script id="memberNav" type="text/x-jquery-tmpl">
 	<div id="tnb">
-		<h3>${memberMenu}</h3>
-		<ul>
-			<li>
-				<div class="dropdown">
-					<a class="btn btn-default dropdown-toggle current-language" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						${currentLanguage}
-					</a>
-					<div class="dropdown-menu language-nav" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="#" data-lang="ko">${langKor}</a>
-						<a class="dropdown-item" href="#" data-lang="en">${langEng}</a>
-						<a class="dropdown-item" href="#" data-lang="zh-Hans">${langZhh}</a>
+		<div class="container">
+			<h3>${memberMenu}</h3>
+			<ul>
+				<li>
+					<div class="dropdown">
+						<a class="btn btn-default dropdown-toggle current-language" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							${currentLanguage}
+						</a>
+						<div class="dropdown-menu language-nav" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#" data-lang="ko">${langKor}</a>
+							<a class="dropdown-item" href="#" data-lang="en">${langEng}</a>
+							<a class="dropdown-item" href="#" data-lang="zh-Hans">${langZhh}</a>
+						</div>
 					</div>
-				</div>
-			</li>
-			<?php if(G5_COMMUNITY_USE) { ?>
-			<li class="tnb_left tnb_shop"><a href="<?php echo G5_SHOP_URL; ?>/"><i class="fa fa-shopping-bag" aria-hidden="true"></i> ${shoppingMall}</a></li>
-			<li class="tnb_left tnb_community"><a href="<?php echo G5_URL; ?>/"><i class="fa fa-home" aria-hidden="true"></i> ${community}</a></li>
-			<?php } ?>
-			<li class="tnb_cart"><a href="<?php echo G5_SHOP_URL; ?>/cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> ${shoppingBasket}</a></li>            
-			<li><a href="<?php echo G5_SHOP_URL; ?>/mypage.php">${mypage}</a></li>
-			<?php if ($is_member) { ?>
+				</li>
+				<?php if(G5_COMMUNITY_USE) { ?>
+				<li class="tnb_left tnb_shop"><a href="<?php echo G5_SHOP_URL; ?>/"><i class="fa fa-shopping-bag" aria-hidden="true"></i> ${shoppingMall}</a></li>
+				<li class="tnb_left tnb_community"><a href="<?php echo G5_URL; ?>/"><i class="fa fa-home" aria-hidden="true"></i> ${community}</a></li>
+				<?php } ?>
+				<li class="tnb_cart"><a href="<?php echo G5_SHOP_URL; ?>/cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> ${shoppingBasket}</a></li>            
+				<li><a href="<?php echo G5_SHOP_URL; ?>/mypage.php">${mypage}</a></li>
+				<?php if ($is_member) { ?>
 
-			<li><a href="<?php echo G5_BBS_URL; ?>/member_confirm.php?url=register_form.php">${userEditInfo}</a></li>
-			<li><a href="<?php echo G5_BBS_URL; ?>/logout.php?url=shop">${signout}</a></li>
-			<?php if ($is_admin) {  ?>
-			<li class="tnb_admin"><a href="<?php echo G5_ADMIN_URL; ?>/shop_admin/"><b>${administrator}</b></a></li>
-			<?php }  ?>
-			<?php } else { ?>
-			<li><a href="<?php echo G5_BBS_URL; ?>/register.php">${signup}</a></li>
-			<li><a href="<?php echo G5_BBS_URL; ?>/login.php?url=<?php echo $urlencode; ?>"><b>${signin}</b></a></li>
-			<?php } ?>
-		</ul>
+				<li><a href="<?php echo G5_BBS_URL; ?>/member_confirm.php?url=register_form.php">${userEditInfo}</a></li>
+				<li><a href="<?php echo G5_BBS_URL; ?>/logout.php?url=shop">${signout}</a></li>
+				<?php if ($is_admin) {  ?>
+				<li class="tnb_admin"><a href="<?php echo G5_ADMIN_URL; ?>/shop_admin/"><b>${administrator}</b></a></li>
+				<?php }  ?>
+				<?php } else { ?>
+				<li><a href="<?php echo G5_BBS_URL; ?>/register.php">${signup}</a></li>
+				<li><a href="<?php echo G5_BBS_URL; ?>/login.php?url=<?php echo $urlencode; ?>"><b>${signin}</b></a></li>
+				<?php } ?>
+			</ul>
+		</div>
 	</div>
 	</script>
 	<div id="hd_wrapper">
-		<div id="logo">
-			<a href="<?php echo G5_SHOP_URL; ?>/">
-				<!-- <img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"> -->
-				<img src="<?php echo G5_URL; ?>/img/logo/bek-logo.png" alt="<?php echo $config['cf_title']; ?>">
-			</a>
-		</div>
-		<div class="search-logo"></div>
-		<script id="searchLogo" type="text/x-jquery-tmpl">
-		<div id="hd_sch">
-			<h3>${shoppingMallSearch}</h3>
-			<form name="frmsearch1" action="<?php echo G5_SHOP_URL; ?>/search.php" onsubmit="return search_submit(this);">
+		<div class="container">
+			<div id="logo">
+				<a href="<?php echo G5_SHOP_URL; ?>/">
+					<!-- <img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"> -->
+					<img src="<?php echo G5_URL; ?>/img/logo/bek-logo.png" alt="<?php echo $config['cf_title']; ?>">
+				</a>
+			</div>
+			<div class="search-logo"></div>
+			<script id="searchLogo" type="text/x-jquery-tmpl">
+			<div id="hd_sch">
+				<h3>${shoppingMallSearch}</h3>
+				<form name="frmsearch1" action="<?php echo G5_SHOP_URL; ?>/search.php" onsubmit="return search_submit(this);">
 
-			<label for="sch_str" class="sound_only">${searchWord}<strong class="sound_only"> ${require}</strong></label>
-			<input type="text" name="q" value="<?php echo stripslashes(get_text(get_search_string($q))); ?>" id="sch_str" placeholder="${inputOfSearchWord}" required>
-			<button type="submit" id="sch_submit"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">${search}</span></button>
+				<label for="sch_str" class="sound_only">${searchWord}<strong class="sound_only"> ${require}</strong></label>
+				<input type="text" name="q" value="<?php echo stripslashes(get_text(get_search_string($q))); ?>" id="sch_str" placeholder="${inputOfSearchWord}" required>
+				<button type="submit" id="sch_submit"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">${search}</span></button>
 
-			</form>
+				</form>
+			</div>
+			</script>
+			<!-- 쇼핑몰 배너 시작 { -->
+			<?php echo display_banner('왼쪽'); ?>
+			<!-- } 쇼핑몰 배너 끝 -->
 		</div>
-		</script>
-		<!-- 쇼핑몰 배너 시작 { -->
-		<?php echo display_banner('왼쪽'); ?>
-		<!-- } 쇼핑몰 배너 끝 -->
 	</div>
 	
 	<div id="hd_menu">
 	</div>
 	<script id="hdMenu" type="text/x-jquery-tmpl">
-		<ul>
-			<li>
-				<a href="#" class="open-cate-nav"><i class="fa fa-bars"></i></a>
-			</li>
-			<li>
-				<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=1">${hit}${item}</a>
-			</li>
-			<li>
-				<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=2">${recommendation}${item}</a>
-			</li>
-			<li>
-				<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=3">${newest}${item}</a>
-			</li>
-			<li>
-				<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=4">${hot}${item}</a>
-			</li>
-			<li>
-				<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=5">${sale}${item}</a>
-			</li>
-			<li class="hd_menu_right">
-				<a href="<?php echo G5_BBS_URL; ?>/faq.php">${faq}</a>
-			</li>
-			<li class="hd_menu_right">
-				<a href="<?php echo G5_BBS_URL; ?>/qalist.php">${oneToOneInquire}</a>
-			</li>
-			<li class="hd_menu_right">
-				<a href="<?php echo G5_SHOP_URL; ?>/personalpay.php">${individualPayment}</a>
-			</li>
-			<li class="hd_menu_right">
-				<a href="<?php echo G5_SHOP_URL; ?>/itemuselist.php">${userReviews}</a>
-			</li>
-			<li class="hd_menu_right">
-				<a href="<?php echo G5_SHOP_URL; ?>/couponzone.php">${cooponZone}</a>
-			</li>
-		</ul>
+		<div class="container">
+			<ul>
+				<li>
+					<a href="#" class="open-cate-nav"><i class="fa fa-bars"></i></a>
+				</li>
+				<li>
+					<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=1">${hit}${item}</a>
+				</li>
+				<li>
+					<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=2">${recommendation}${item}</a>
+				</li>
+				<li>
+					<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=3">${newest}${item}</a>
+				</li>
+				<li>
+					<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=4">${hot}${item}</a>
+				</li>
+				<li>
+					<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=5">${sale}${item}</a>
+				</li>
+				<li class="hd_menu_right">
+					<a href="<?php echo G5_BBS_URL; ?>/faq.php">${faq}</a>
+				</li>
+				<li class="hd_menu_right">
+					<a href="<?php echo G5_BBS_URL; ?>/qalist.php">${oneToOneInquire}</a>
+				</li>
+				<li class="hd_menu_right">
+					<a href="<?php echo G5_SHOP_URL; ?>/personalpay.php">${individualPayment}</a>
+				</li>
+				<li class="hd_menu_right">
+					<a href="<?php echo G5_SHOP_URL; ?>/itemuselist.php">${userReviews}</a>
+				</li>
+				<li class="hd_menu_right">
+					<a href="<?php echo G5_SHOP_URL; ?>/couponzone.php">${cooponZone}</a>
+				</li>
+			</ul>
+		</div>
 	</script>
 </div>
 <script>

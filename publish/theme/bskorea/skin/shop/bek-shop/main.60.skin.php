@@ -428,16 +428,14 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 				var tmpEa = 0;
 				var tmpPrice = 0;
 				var tmpOptPrice = 0;
-				var tmpArea = '';
 				tmpEa = $(this).closest('.option-body').find('input[name^=ct_qty]').val();
 				tmpPrice = $(this).closest('.option-body').find('input[id^="it_price_"]').val();
 				tmpOptPrice = optionPrice[i];
-				tmpArea = $(this).closest('.list-payment');
+				tmpArea = $(this);
 				tmpEa = Number(tmpEa);
 				tmpPrice = Number(tmpPrice);
 				tmpOptPrice = Number(tmpOptPrice);
-				arrNo = onChgOpt;
-				totalPriceCalc(tmpArea, arrNo);
+				totalPriceCalc(tmpArea);
 
 				onChgOpt++;
 			});
@@ -480,7 +478,7 @@ function ctQtyCalc(v, a) {
 
 	return input.val(value);
 }
-function totalPriceCalc(area, arrNo) {
+function totalPriceCalc(area) {
 	// 파라미터 : 갯수, 가격, 옵션가격, 해당 블록 영역, 옵션 생성시 배열 인덱스 번호
 	// 배열에 추가/삭제 및 총합 계산
 	/*
@@ -508,20 +506,41 @@ function totalPriceCalc(area, arrNo) {
 	price = typeof price !== 'undefined' ? price : 0;
 	optPrice = typeof optPrice !== 'undefined' ? optPrice : 0;
 	area = typeof area !== 'undefined' ? area : '';
-	arrNo = typeof arrNo !== 'undefined' ? arrNo : 0;
+	//arrNo = typeof arrNo !== 'undefined' ? arrNo : 0;
 
 	var calc = 0;
 
 	var totCalc = 0;
 
+	var it_price = 0;
+
+	var io_price = 0;
+
+	var ct_qty = 0;
+
+	var totalVal = 0;
+
+	area = area.closest('.list-payment');
+
 	//area.find('')
 	calc = (price + optPrice) * ea;
 
-	calcArr[arrNo] = calc;
+	//calcArr[arrNo] = calc;
 
-	for (var i = 0; i < calcArr.length; i++) {
-		totCalc += calcArr[i];
-	}	
+	//for (var i = 0; i < calcArr.length; i++) {
+	//	totCalc += calcArr[i];
+	//}
+
+
+	area.find('.info').each(function() {
+		it_price = jQuery(this).closest('.option').find('input[name^="it_price"]').val();
+		io_price = jQuery(this).find('input[name^="io_price"]').val();
+		ct_qty = jQuery(this).find('input[name^="ct_qty"]').val();
+		it_price = Number(it_price);
+		io_price = Number(io_price);
+		ct_qty = Number(ct_qty);
+		totCalc += (it_price + io_price) * ct_qty;
+	});
 
 	area.find('.list-tot-price .price').text(addComma(totCalc) + ' 원');
 }

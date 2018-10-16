@@ -2,10 +2,27 @@
 
 a { color: #333; }
 a:hover { text-decoration: none; }
+
+.cate-main-nav > li > ul > li:first-child::after { top: 0px; }
+
+#tnb ul { width: auto; }
 #tnb a { font-size: 12px; }
 #tnb a.current-language {}
+
+#hd_wrapper { width: auto; }
+
+#hd_menu ul { width: auto; }
+
+#ft { width: auto; }
+#ft .ft_wr { width: auto; }
+#ft_logo,
+#ft .ft_info,
+#ft .ft_cs { float: none; width: auto; }
 legend { width: auto; }
 /* BIGIN :: Index Carousel custom */
+/* BIGIN :: Detail page */
+#sit_ov { width: auto; float: none; }
+/* END :: Detail page */
 .carousel img {
     min-width: 100%;
     max-width: 100%;
@@ -124,7 +141,11 @@ legend { width: auto; }
 .thumb-img > div[class^="col-"] > div > a.active, .thumb-img > div[class^="col-"] > div > a:hover { opacity: 1; }
 /* END :: Detail preview */
 /********** END :: item list custom **********/
-
+/* BIGIN :: Sub pages Quick navigation */
+#sct { position: relative; }
+#sct_location { top: 25px; }
+#sct #sct_location a { padding: 5px 10px; }
+/* END :: Sub pages Quick navigation */
 
 
 .dropdown-toggle::after {

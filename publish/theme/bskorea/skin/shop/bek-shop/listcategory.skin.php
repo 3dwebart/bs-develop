@@ -12,25 +12,39 @@ $sql = " select ca_id, ca_name from {$g5['g5_shop_category_table']} where ca_id 
 $result = sql_query($sql);
 while ($row=sql_fetch_array($result)) {
 
-    $row2 = sql_fetch(" select count(*) as cnt from {$g5['g5_shop_item_table']} where (ca_id like '{$row['ca_id']}%' or ca_id2 like '{$row['ca_id']}%' or ca_id3 like '{$row['ca_id']}%') and it_use = '1'  ");
+	$row2 = sql_fetch(" select count(*) as cnt from {$g5['g5_shop_item_table']} where (ca_id like '{$row['ca_id']}%' or ca_id2 like '{$row['ca_id']}%' or ca_id3 like '{$row['ca_id']}%') and it_use = '1'  ");
 
-    $str .= '<li><a href="./list.php?ca_id='.$row['ca_id'].'">'.$row['ca_name'].' ('.$row2['cnt'].')</a></li>';
-    $exists = true;
+	$str .= '<div class="col category-list"><a href="./list.php?ca_id='.$row['ca_id'].'">'.$row['ca_name'].' ('.$row2['cnt'].')</a></div>';
+	//$str .= '<li><a href="./list.php?ca_id='.$row['ca_id'].'">'.$row['ca_name'].' ('.$row2['cnt'].')</a></li>';
+	$exists = true;
 }
 
 if ($exists) {
 
-    // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-    add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0);
+	// add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
+	add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0);
 ?>
-
+<style>
+.category-list {
+	border: 1px solid #d7d7d7;
+	margin-left: -1px;
+	margin-top: -1px;
+}
+#sct_ct_1 div[class^="col"] a {
+    display: block;
+    padding: 0 10px;
+    line-height: 40px;
+}
+</style>
 <!-- 상품분류 1 시작 { -->
-<aside id="sct_ct_1" class="sct_ct">
-    <h2>현재 상품 분류와 관련된 분류</h2>
-    <ul>
-        <?php echo $str; ?>
-    </ul>
-</aside>
+<section class="container">
+	<aside id="sct_ct_1" class="sct_ct">
+		<h2>현재 상품 분류와 관련된 분류</h2>
+		<div class="row">
+			<?php echo $str; ?>
+		</div>
+	</aside>
+</section>
 <!-- } 상품분류 1 끝 -->
 
 <?php } ?>

@@ -29,7 +29,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
         <li><a href="<?php echo $sct_sort_href; ?>it_type5&amp;sortodr=desc">할인상품</a></li>
     </ul> -->
 
-    <ul id="ssch_sort">
+    <ul id="ssch_sort" >
         <li><a href="<?php echo $sct_sort_href; ?>it_sum_qty&amp;sortodr=desc">판매많은순</a></li>
         <li><a href="<?php echo $sct_sort_href; ?>it_price&amp;sortodr=asc">낮은가격순</a></li>
         <li><a href="<?php echo $sct_sort_href; ?>it_price&amp;sortodr=desc">높은가격순</a></li>

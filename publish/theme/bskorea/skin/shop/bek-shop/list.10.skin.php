@@ -16,6 +16,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
     }
 
     if ($i == 1) {
+        echo "<div class=\"container\">";
         if ($this->css) {
             echo "<ul class=\"{$this->css}\">\n";
         } else {
@@ -98,7 +99,10 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
     echo "</li>\n";
 }
 
-if ($i > 1) echo "</ul>\n";
+if ($i > 1) {
+    echo "</ul>\n";
+    echo "</div>\n";
+}
 
 if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>\n";
 ?>
