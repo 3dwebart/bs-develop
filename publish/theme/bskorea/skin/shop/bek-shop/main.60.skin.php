@@ -20,14 +20,14 @@ var g5_shop_css_url = "<?php echo G5_SHOP_SKIN_URL; ?>";
 <?php
 for ($i=1; $row=sql_fetch_array($result); $i++) {
 	// 상품 선택옵션
-	$option_item = get_list_options($row['it_id'], $row['it_option_subject'], $i);
+	$option_item[$i] = get_list_options($row['it_id'], $row['it_option_subject'], $i);
 
 	// 상품품절체크
-	$is_soldout = is_soldout($row['it_id']);
+	$is_soldout[$i] = is_soldout($row['it_id']);
 
 	// 주문가능체크
 	$is_orderable = true;
-	if(!$row['it_use'] || $row['it_tel_inq'] || $is_soldout)
+	if(!$row['it_use'] || $row['it_tel_inq'] || $is_soldout[$i])
 		$is_orderable = false;
 
 	if ($this->list_mod >= 2) { // 1줄 이미지 : 2개 이상
@@ -46,9 +46,9 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 		}
 	}
 
-	echo '<div class="col-4">'.PHP_EOL; // BIGIN :: orogon : li
+	echo '<div class="col-4 p-0">'.PHP_EOL; // BIGIN :: orogon : li
 
-	echo '<form id="flist_'.$i.'" name="flist_'.$i.'" onsubmit="return false;">'.PHP_EOL; // BIGIN :: form
+	echo '<form id="flist_'.$i.'" name="flist_'.$i.'" class="list-item-form" onsubmit="return false;">'.PHP_EOL; // BIGIN :: form
 
 	echo '<div class="item-wrap">'.PHP_EOL; // BIGIN :: item-wrap
 
@@ -153,6 +153,8 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 	*/
 
 	/* BIGIN :: option */
+	$eq_num = $i - 1;
+	$opt_select_table[$i] = '';
 	if($is_orderable) {
 		$item_ct_qty = 1;
 		if($row['it_buy_min_qty'] > 1) {
@@ -168,6 +170,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 		<input type="hidden" name="io_type[<?php echo $row['it_id']; ?>][]" value="0">
 		
 		<input type="hidden" name="sw_direct[<?php echo $row['it_id']; ?>][]" value="" id="sw_direct_<?php echo $row['it_id']; ?>">
+		<input type="hidden" class="eqNumber" value="<?php echo($eq_num); ?>">
 		<table class="sit_ov_tbl">
 			<colgroup>
 				<col class="grid_2">
@@ -175,7 +178,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 			</colgroup>
 			<tbody>
 				<?php // 선택옵션
-					echo $option_item;
+					echo $option_item[$i];
 				?>
 				<!--
 				<tr>
@@ -207,15 +210,30 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 	
 	echo "</div>".PHP_EOL; // END :: origin : li
 }
-
+/*
+//echo "<h1>";
+print_r($option_item);
+//echo "</h1>";
+//echo "<h1>arr 1 : ".echo($option_item[0])."</h1>";
+echo "<h1>arr 2 : ".$option_item[1]."</h1>";
+//echo "<h1>arr 3 : ".echo($option_item[2])."</h1>";
+echo "<h1>arr 4 : ".$option_item[3]."</h1>";
+*/
 if ($i > 1) echo "</div>".PHP_EOL; // origin : ul
-
+// There is no registered product
+// OR
+// There not a registered product
 if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>".PHP_EOL;
 ?>
 <!-- } 상품진열 10 끝 -->
 <script>
 (function($) {
 	var onChgOpt = 0;
+	var listItemFrom = jQuery('.list-payment');
+	/* 
+		BIGIN :: Layer popup
+		If it item mouse over slide up box and after that can you eye icon on click layer popup layout
+	*/
 	jQuery('.simplicity-detail').each(function() {
 		jQuery(this).magnificPopup({
 			type: 'ajax',
@@ -236,9 +254,13 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 			}
 		});
 	});
+	/* END :: Layer popup */
+	var itemIndex = 0;
 	/* BIGIN :: 리스트에서  카트 아이콘을 클릭했을 때 해당 아이템의 옵션 및 가격 정보가 표시됨 */
 	jQuery(document).on('click', '.get-cart-payment', function() {
 		jQuery(this).parent().parent().parent().find('.list-payment').addClass('on');
+		itemIndex = jQuery(this).closest('form').find('.eqNumber').val();
+
 		return false;
 	});
 	/* END :: 리스트에서  카트 아이콘을 클릭했을 때 해당 아이템의 옵션 및 가격 정보가 표시됨 */
@@ -440,6 +462,8 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 				onChgOpt++;
 			});
 			jQuery(document).on('click', '.info-close', function() {
+				var currentArea = jQuery(this).closest('.Increase-Decrease');
+				ctQtyCalc('close', currentArea);
 				jQuery(this).closest('.info').remove();
 			});
 		}
@@ -472,11 +496,15 @@ function ctQtyCalc(v, a) {
 		} else {
 			value--;
 		}
-	} else {
+	} else if(v == 'plus') {
 		value++;
+	} else {
+		//
 	}
 
-	return input.val(value);
+	input.val(value);
+
+	return totalPriceCalc(a);
 }
 function totalPriceCalc(area) {
 	// 파라미터 : 갯수, 가격, 옵션가격, 해당 블록 영역, 옵션 생성시 배열 인덱스 번호
@@ -520,17 +548,14 @@ function totalPriceCalc(area) {
 
 	var totalVal = 0;
 
-	area = area.closest('.list-payment');
-
-	//area.find('')
 	calc = (price + optPrice) * ea;
 
-	//calcArr[arrNo] = calc;
+	eachCalc(area);
+}
 
-	//for (var i = 0; i < calcArr.length; i++) {
-	//	totCalc += calcArr[i];
-	//}
-
+function eachCalc(area) {
+	area = area.closest('.list-payment');
+	var totCalc = 0;
 
 	area.find('.info').each(function() {
 		it_price = jQuery(this).closest('.option').find('input[name^="it_price"]').val();
@@ -544,6 +569,7 @@ function totalPriceCalc(area) {
 
 	area.find('.list-tot-price .price').text(addComma(totCalc) + ' 원');
 }
+
 function addComma(num) {
   var regexp = /\B(?=(\d{3})+(?!\d))/g;
   return num.toString().replace(regexp, ',');

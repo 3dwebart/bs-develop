@@ -1,110 +1,114 @@
 $(function() {
-	$("select.it_option").on("change", function() {
-		var $frm = $(this).closest("form");
-		var $sel = $frm.find("select.it_option");
-		var sel_count = $sel.length; // size( ) 3.0 이후부터 사라짐
-		var idx = $sel.index($(this));
-		var val = $(this).val();
-		var it_id = $frm.find("input[name='it_id[]']").val();
+	var itemGroup = $('form[name^="flist_"]');
+	itemGroup.each(function() {
+		$(this).find("select.it_option").on("change", function() {
+			var $frm = $(this).closest("form");
+			var $sel = $frm.find("select.it_option");
+			var sel_count = $sel.length; // size( ) 3.0 이후부터 사라짐
+			var idx = $sel.index($(this));
+			var val = $(this).val();
+			var it_id = $frm.find("input[name^='it_id']").val();
+			console.log('idx :: ' + idx);
 
-		// 선택값이 없을 경우 하위 옵션은 disabled
-		if(val == "") {
-			$frm.find("select.it_option:gt("+idx+")").val("").attr("disabled", true);
-			return;
-		}
-
-		// 하위선택옵션로드
-		if(sel_count > 1 && (idx + 1) < sel_count) {
-			var opt_id = "";
-
-			// 상위 옵션의 값을 읽어 옵션id 만듬
-			if(idx > 0) {
-				$frm.find("select.it_option:lt("+idx+")").each(function() {
-					if(!opt_id)
-						opt_id = $(this).val();
-					else
-						opt_id += chr(30)+$(this).val();
-				});
-
-				opt_id += chr(30)+val;
-			} else if(idx == 0) {
-				opt_id = val;
-			}
-
-			$.post(
-				"./itemoption.php",
-				{ it_id: it_id, opt_id: opt_id, idx: idx, sel_count: sel_count },
-				function(data) {
-					$sel.eq(idx+1).empty().html(data).attr("disabled", false);
-
-					// select의 옵션이 변경됐을 경우 하위 옵션 disabled
-					if(idx+1 < sel_count) {
-						var idx2 = idx + 1;
-						$frm.find("select.it_option:gt("+idx2+")").val("").attr("disabled", true);
-					}
-				}
-			);
-		} else if((idx + 1) == sel_count) { // 선택옵션처리
-			if(val == "")
+			// 선택값이 없을 경우 하위 옵션은 disabled
+			if(val == "") {
+				$frm.find("select.it_option:gt("+idx+")").val("").attr("disabled", true);
 				return;
-
-			var info = val.split(",");
-			// 재고체크
-			if(parseInt(info[2]) < 1) {
-				alert("선택하신 선택옵션상품은 재고가 부족하여 구매할 수 없습니다.");
-				return false;
 			}
-		}
-	});
 
-	// 장바구니 담기버튼
-	$("button.btn_add_cart").click(function() {
-		var $frm = $(this.form);
+			// 하위선택옵션로드
+			if(sel_count > 1 && (idx + 1) < sel_count) {
+				var opt_id = "";
 
-		$(this).closest('form')
-		.find('.list_item_option')
-		.find('input[id^="#sw_direct_"]').val(0);
+				// 상위 옵션의 값을 읽어 옵션id 만듬
+				if(idx > 0) {
+					$frm.find("select.it_option:lt("+idx+")").each(function() {
+						if(!opt_id)
+							opt_id = $(this).val();
+						else
+							opt_id += chr(30)+$(this).val();
+					});
 
-		// 메세지 레이어 닫기
-		cart_msg_layer();
+					opt_id += chr(30)+val;
+				} else if(idx == 0) {
+					opt_id = val;
+				}
 
-		set_option_value($frm, $(this));
-	});
+				$.post(
+					"./itemoption.php",
+					{ it_id: it_id, opt_id: opt_id, idx: idx, sel_count: sel_count },
+					function(data) {
+						$sel.eq(idx+1).empty().html(data).attr("disabled", false);
 
-	// 구매하기 버튼
-	
-	$("button.btn_add_buy").click(function() {
-		var $frm = $(this.form);
-		var $action = '/shop/orderform.php?sw_direct=1';
-		$(this).closest('form')
-		.find('.list_item_option')
-		.find('input[id^="#sw_direct_"]').val(1);
+						// select의 옵션이 변경됐을 경우 하위 옵션 disabled
+						if(idx+1 < sel_count) {
+							var idx2 = idx + 1;
+							$frm.find("select.it_option:gt("+idx2+")").val("").attr("disabled", true);
+						}
+					}
+				);
+			} else if((idx + 1) == sel_count) { // 선택옵션처리
+				if(val == "")
+					return;
 
-		// var $frmName = $frm.attr('name');
+				var info = val.split(",");
+				// 재고체크
+				if(parseInt(info[2]) < 1) {
+					alert("선택하신 선택옵션상품은 재고가 부족하여 구매할 수 없습니다.");
+					return false;
+				}
+			}
+		});
 
-		// $frm.attr('method', 'post');
-		// $frm.attr('action', $action);
-		// console.log($frm.attr('method'));
-		// console.log($frm.attr('action'));
-		// console.log($frmName);
-		// //return false;
-		// itemBuySubmit($frmName);
+		// 장바구니 담기버튼
+		$(this).find("button.btn_add_cart").click(function() {
+			var $frm = $(this.form);
 
-		// 메세지 레이어 닫기
-		//cart_msg_layer();
+			$(this).closest('form')
+			.find('.list_item_option')
+			.find('input[id^="#sw_direct_"]').val(0);
 
-		set_option_value($frm, $(this));
-	});
-	
+			// 메세지 레이어 닫기
+			cart_msg_layer();
 
-	// 장바구니 레이어 닫기
-	$("#cart_msg_close, #cart_msg_no").on("click", function() {
-		cart_msg_layer();
-	});
+			set_option_value($frm, $(this));
+		});
 
-	// 장바구니 이동
-	$("#cart_msg_yes").on("click", function() {
-		document.location.href = g5_shop_url+"/cart.php";
+		// 구매하기 버튼
+		
+		$(this).find("button.btn_add_buy").click(function() {
+			var $frm = $(this.form);
+			var $action = '/shop/orderform.php?sw_direct=1';
+			$(this).closest('form')
+			.find('.list_item_option')
+			.find('input[id^="#sw_direct_"]').val(1);
+
+			// var $frmName = $frm.attr('name');
+
+			// $frm.attr('method', 'post');
+			// $frm.attr('action', $action);
+			// console.log($frm.attr('method'));
+			// console.log($frm.attr('action'));
+			// console.log($frmName);
+			// //return false;
+			// itemBuySubmit($frmName);
+
+			// 메세지 레이어 닫기
+			//cart_msg_layer();
+
+			set_option_value($frm, $(this));
+		});
+		
+
+		// 장바구니 레이어 닫기
+		$(this).find("#cart_msg_close, #cart_msg_no").on("click", function() {
+			cart_msg_layer();
+		});
+
+		// 장바구니 이동
+		$(this).find("#cart_msg_yes").on("click", function() {
+			document.location.href = g5_shop_url+"/cart.php";
+		});
 	});
 });
 

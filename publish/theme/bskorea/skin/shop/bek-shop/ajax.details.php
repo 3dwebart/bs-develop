@@ -61,6 +61,7 @@ div[class^="col-"] { color: #ffffff; }
 						</a>
 					</div>
 				</div>
+				<?php if(!empty($row['it_img2'])) { ?>
 				<div class="col-4">
 					<div>
 						<a href="#">
@@ -68,6 +69,8 @@ div[class^="col-"] { color: #ffffff; }
 						</a>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(!empty($row['it_img3'])) { ?>
 				<div class="col-4">
 					<div>
 						<a href="">
@@ -75,6 +78,7 @@ div[class^="col-"] { color: #ffffff; }
 						</a>
 					</div>
 				</div>
+				<?php } ?>
 			</div>
 		</div>
 		<div class="col-5 content-wrap">
