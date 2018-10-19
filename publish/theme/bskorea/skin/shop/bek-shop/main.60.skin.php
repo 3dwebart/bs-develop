@@ -226,8 +226,14 @@ if ($i > 1) echo "</div>".PHP_EOL; // origin : ul
 if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>".PHP_EOL;
 ?>
 <!-- } 상품진열 10 끝 -->
+<script src="<?php echo G5_SHOP_SKIN_URL; ?>/js/listCalc.js"></script>
 <script>
 (function($) {
+	/* BIGIN :: 리스트 바로 구매 및 장바구니 수집 개발 미흡으로 인해 임시 중단 */
+	jQuery('.cart-icons .get-cart-payment').css({
+		display: 'none'
+	});
+	/* END :: 리스트 바로 구매 및 장바구니 수집 개발 미흡으로 인해 임시 중단 */
 	var onChgOpt = 0;
 	var listItemFrom = jQuery('.list-payment');
 	/* 
@@ -413,7 +419,7 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 				priceWrap[i] += '<input type="hidden" name="io_price[' + it_id + '][]" class="io_price" value="' + io_price + '">';
 				priceWrap[i] += '<input type="hidden" class="io_stock" value="' + io_stock + '">';
 				priceWrap[i] += '<input type="hidden" name="listCartOpt[' + it_id + '][]" value="1">';
-				/**/
+				/* 옵션 */
 				priceWrap[i] += '<input type="hidden" name="list_io_type[' + it_id + '][]" value="' + io_type + '">';
 				priceWrap[i] += '<input type="hidden" name="list_io_id[' + it_id + '][]" value="' + io_id + '">';
 				priceWrap[i] += '<input type="hidden" name="list_io_value[' + it_id + '][]" value="' + optionName[i] + '">';
@@ -485,106 +491,4 @@ if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>"
 		onlyNumber(e);
 	});
 })(jQuery);
-var calcArr = new Array();
-function ctQtyCalc(v, a) {
-	var input = a.find('input[id^="ct_qty_"]');
-	var value = input.val();
-	value = Number(value);
-	if(v == 'minus') {
-		if(value <= 1) {
-			return false;
-		} else {
-			value--;
-		}
-	} else if(v == 'plus') {
-		value++;
-	} else {
-		//
-	}
-
-	input.val(value);
-
-	return totalPriceCalc(a);
-}
-function totalPriceCalc(area) {
-	// 파라미터 : 갯수, 가격, 옵션가격, 해당 블록 영역, 옵션 생성시 배열 인덱스 번호
-	// 배열에 추가/삭제 및 총합 계산
-	/*
-		갯수 : ea / 기본값 : 0
-		가격 : price / 기본값 : 0
-		옵션가격 : optPrice / 기본값 : 0
-		영역 : area / 기본값 : ''
-		배열 인덱스 : arrNo / 기본값 : 0
-	*/
-	var ea = area.find('input[name^="ct_qty"]').val();
-	var price = area.find('input[name^="it_price"]').val();
-	var optPrice = 0;
-	var optLength = 0;
-	var optValue = '';
-	if(area.find('.option').length > 0) {
-		optPrice = area.find('input[name^="io_price"]').val();
-		optLength = area.find('.it_option').length - 1;
-		optValue = area.find('.it_option').eq(optLength).val().split(',');
-		optPrice = Number(optValue[1]);
-	}
-	ea = Number(ea);
-	price = Number(price);
-	optPrice = Number(optPrice);
-	ea = typeof ea !== 'undefined' ? ea : 0;
-	price = typeof price !== 'undefined' ? price : 0;
-	optPrice = typeof optPrice !== 'undefined' ? optPrice : 0;
-	area = typeof area !== 'undefined' ? area : '';
-	//arrNo = typeof arrNo !== 'undefined' ? arrNo : 0;
-
-	var calc = 0;
-
-	var totCalc = 0;
-
-	var it_price = 0;
-
-	var io_price = 0;
-
-	var ct_qty = 0;
-
-	var totalVal = 0;
-
-	calc = (price + optPrice) * ea;
-
-	eachCalc(area);
-}
-
-function eachCalc(area) {
-	area = area.closest('.list-payment');
-	var totCalc = 0;
-
-	area.find('.info').each(function() {
-		it_price = jQuery(this).closest('.option').find('input[name^="it_price"]').val();
-		io_price = jQuery(this).find('input[name^="io_price"]').val();
-		ct_qty = jQuery(this).find('input[name^="ct_qty"]').val();
-		it_price = Number(it_price);
-		io_price = Number(io_price);
-		ct_qty = Number(ct_qty);
-		totCalc += (it_price + io_price) * ct_qty;
-	});
-
-	area.find('.list-tot-price .price').text(addComma(totCalc) + ' 원');
-}
-
-function addComma(num) {
-  var regexp = /\B(?=(\d{3})+(?!\d))/g;
-  return num.toString().replace(regexp, ',');
-}
-
-function onlyNumber(event) {
-	//event = event || window.event;
-	var keyID = (event.which) ? event.which : event.keyCode;
-	if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) )
-	{
-		//alert(keyID);
-	}
-	else
-	{
-		return false;
-	}
-}
 </script>

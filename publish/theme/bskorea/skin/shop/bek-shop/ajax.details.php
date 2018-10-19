@@ -83,11 +83,11 @@ div[class^="col-"] { color: #ffffff; }
 		</div>
 		<div class="col-5 content-wrap">
 			<form id="flist_<?php echo $row['it_id']; ?>" name="flist_<?php echo $row['it_id']; ?>" class="ajax-detail-form">
-				<input type="hidden" name="it_id[]" value="<?php echo $row['it_id']; ?>">
-				<input type="hidden" name="it_name[]" value="<?php echo stripslashes($row['it_name']); ?>">
-				<input type="hidden" name="it_price[]" value="<?php echo get_price($row); ?>">
-				<input type="hidden" name="it_stock[]" value="<?php echo get_it_stock_qty($row['it_id']); ?>">
-				<input type="hidden" name="sw_direct_item[]" value="" id="sw_direct_item" />
+				<input type="hidden" name="it_id" value="<?php echo $row['it_id']; ?>">
+				<input type="hidden" name="it_name" value="<?php echo stripslashes($row['it_name']); ?>">
+				<input type="hidden" name="it_price" value="<?php echo get_price($row); ?>">
+				<input type="hidden" name="it_stock" value="<?php echo get_it_stock_qty($row['it_id']); ?>">
+				<input type="hidden" name="sw_direct_item" value="" id="sw_direct_item" />
 				<div class="content">
 					<div class="row">
 						<div class="col-5 bold arrow-right">
@@ -170,15 +170,13 @@ div[class^="col-"] { color: #ffffff; }
 									}
 								?>
 								<div class="list_item_option">
-									<input type="hidden" name="it_id[]" value="<?php echo $row['it_id']; ?>">
-									<input type="hidden" name="it_name[]" value="<?php echo stripslashes($row['it_name']); ?>">
-									<input type="hidden" name="it_price[]" value="<?php echo get_price($row); ?>">
-									<input type="hidden" name="it_stock[]" value="<?php echo get_it_stock_qty($row['it_id']); ?>">
 									<input type="hidden" name="io_type[<?php echo $row['it_id']; ?>][]" value="0">
-									<input type="hidden" name="io_id[<?php echo $row['it_id']; ?>][]" value="">
+									<!-- <input type="hidden" name="io_id[<?php echo $row['it_id']; ?>][]" value=""> -->
 									<input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][]" value="">
+									<!--
 									<input type="hidden" name="io_price[<?php echo $row['it_id']; ?>][]" value="">
 									<input type="hidden" name="ct_qty[<?php echo $row['it_id']; ?>][]" value="<?php echo $item_ct_qty; ?>">
+									-->
 									<input type="hidden" name="sw_direct[<?php echo $row['it_id']; ?>][]" value="" id="sw_direct_<?php echo $row['it_id']; ?>">
 									<table class="sit_ov_tbl">
 										<colgroup>
@@ -203,6 +201,11 @@ div[class^="col-"] { color: #ffffff; }
 						<!-- // END :: option -->
 					</div>
 					<?php
+						}
+						if($row['it_buy_min_qty'] == 0) {
+							$item_ct_qty = 1;
+						} else {
+							$item_ct_qty = $row['it_buy_min_qty'];
 						}
 					?>
 					<!--
@@ -458,9 +461,11 @@ $cnt = $row2['cnt'];
 	//it_id = jQuery(this).find('input[id^="it_id_"]').val();
 	//it_price = Number(jQuery(this).find('input[id^="it_price_"]').val());
 	//item_ct_qty = Number(jQuery(this).find('input[name^="tmp_ct_qty"]').val());
+	/*
 	if(item_ct_qty == 0) {
 		item_ct_qty = 1;
 	}
+	*/
 
 	optLength = cnt;
 	if(optLength == 0) {
@@ -513,7 +518,7 @@ $cnt = $row2['cnt'];
 		jQuery('.option').addClass('list-on');
 		jQuery('.it_option').eq(optionLength - 1).on('change', function() {
 			j = 0;
-			it_id = jQuery(this).closest('.option').find('input[name^="it_id"]').val();
+			it_id = jQuery(this).closest('form').find('input[name^="it_id"]').val();
 			io_type = jQuery(this).closest('.option').find('input[name^="io_type"]').val();
 			io_id = '';
 			io_price = jQuery(this).closest('.option').find('input[name^="io_price"]').val();
