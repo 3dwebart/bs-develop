@@ -40,9 +40,9 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 
 	if ($i == 1) {
 		if ($this->css) {
-			echo '<div class="row">'.PHP_EOL;
+			echo '<div class="row m-0">'.PHP_EOL;
 		} else {
-			echo '<div class="row">'.PHP_EOL;
+			echo '<div class="row m-0">'.PHP_EOL;
 		}
 	}
 

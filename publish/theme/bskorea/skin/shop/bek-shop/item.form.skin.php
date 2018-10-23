@@ -316,8 +316,8 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
                         <div class="input-group"><!-- id="sit_ov_btn" -->
                             <div class="btn-group">
                                 <?php if ($is_orderable) { ?>
-                                <button type="submit" onclick="document.pressed=this.value;" value="바로구매" class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i> 바로구매</button><!--  id="sit_btn_buy" -->
-                                <button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="btn btn-outline-primary"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 장바구니</button><!--  id="sit_btn_cart" -->
+                                <button type="submit" onclick="document.pressed=this.value;" value="바로구매" class="btn btn-secondary"><i class="fa fa-credit-card" aria-hidden="true"></i> 바로구매</button><!--  id="sit_btn_buy" -->
+                                <button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="btn btn-outline-secondary"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 장바구니</button><!--  id="sit_btn_cart" -->
                                 <?php } ?>
                                 <?php if(!$is_orderable && $it['it_soldout'] && $it['it_stock_sms']) { ?>
                                 <a href="javascript:popup_stocksms('<?php echo $it['it_id']; ?>');" id="sit_btn_alm" class="btn btn-outline-default"><i class="fa fa-bell-o" aria-hidden="true"></i> 재입고알림</a>

@@ -75,11 +75,13 @@ include_once(G5_THEME_SHOP_PATH.'/shop.main.head.php');
 <?php if($default['de_type1_list_use']) { ?>
 <!-- 히트상품 시작 { -->
 <section class="sct_wrap">
+	<!--
 	<header>
 		<h2>
 			<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=1" class="lang-change"  data-first-upper="1">${hit} ${item}</a>
 		</h2>
 	</header>
+	-->
 	<?php
 	$list = new item_list();
 	$list->set_type(1);
