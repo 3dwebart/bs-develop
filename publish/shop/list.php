@@ -66,7 +66,6 @@ var itemlist_ca_id = "<?php echo $ca_id; ?>";
 
 <!-- 상품 목록 시작 { -->
 <div id="sct">
-
     <?php
     $nav_skin = $skin_dir.'/navigation.skin.php';
     if(!is_file($nav_skin))
@@ -77,8 +76,9 @@ var itemlist_ca_id = "<?php echo $ca_id; ?>";
     echo '<div id="sct_hhtml">'.conv_content($ca['ca_head_html'], 1).'</div>';
 
     $cate_skin = $skin_dir.'/listcategory.skin.php';
-    if(!is_file($cate_skin))
+    if(!is_file($cate_skin)) {
         $cate_skin = G5_SHOP_SKIN_PATH.'/listcategory.skin.php';
+    }
     include $cate_skin;
 
     // 상품 출력순서가 있다면
@@ -145,6 +145,9 @@ var itemlist_ca_id = "<?php echo $ca_id; ?>";
     ?>
 
     <?php
+    if(empty($qstr1)) {
+        $qstr1 = '';
+    }
     $qstr1 .= 'ca_id='.$ca_id;
     $qstr1 .='&amp;sort='.$sort.'&amp;sortodr='.$sortodr;
     echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr1.'&amp;page=');
