@@ -29,7 +29,7 @@ $admin = get_admin("super");
             </ul>
             <div class="row">
                 <div class="col-3">
-                    <a href="<?php echo G5_SHOP_URL; ?>/" id="ft_logo"><img src="<?php echo G5_IMG_URL; ?>/logo/barskorea-logo.png" alt="처음으로"></a>
+                    <a href="<?php echo G5_SHOP_URL; ?>/" id="ft_logo"><img src="<?php echo G5_IMG_URL; ?>/logo/sancheong_berry_footer_logo.png" alt="처음으로"></a>
                 </div>
                 <div class="col-6">
                     <div class="ft_info">

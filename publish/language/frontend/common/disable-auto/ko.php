@@ -63,6 +63,9 @@ $disableAuto = array (
 	'fontSizeConsistOfDisplayNone' => '글자크기 조정 display:none 되어 있음',
 	'small' => '작게',
 	'large' => '크게',
+	// Detail page
+	'pressYourOrderIn' => '바로구매',
+	'shoppingCart' => '장바구니',
 	// footer
 	'companyName' => '회사명',
 	'CRN' => '사업자 등록 번호',

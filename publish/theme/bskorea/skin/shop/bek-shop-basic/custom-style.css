@@ -1,0 +1,123 @@
+/********** BIGIN :: main **********/
+.sct.sct_10.sct_60 {
+    display: inline-block;
+    width: 100%;
+}
+.sct_10.sct_60 .sct_li {
+    position: relative;
+    float: left;
+    margin: 0 16px 16px 0;
+    text-align: center;
+}
+.sct_10.sct_60 .sct_last {
+    margin: 0 0 16px !important;
+}
+.sct_10.sct_60 .sct_img a { display: inline-block; width: 100%; }
+.sct_10.sct_60 .img-mask,
+.sct_10 .col-4 .img-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, .3);
+    opacity: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.sct_10.sct_60 .img-mask.on,
+.sct_10 .col-4 .img-mask.on {
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.sct_10.sct_60 .sct_li .sct_txt a { display: block; }
+.sct_wrap header {
+    padding: 0;
+}
+.sct_wrap header h2 {
+    text-align: left;
+    font-size: 1.2rem;
+    margin: 20px 0;
+    display: block;
+    padding: 20px 0;
+    border-bottom: 2px solid #dedede;
+    line-height: 1em;
+}
+/********** END :: main **********/
+/********** BIGIN :: category list **********/
+/********** Quick nav { **********/
+#sct_ct_1 li a { background: transparent; color: #333; transition: all .3s ease; }
+#sct_ct_1 li a:hover { background: #999999; color: #fff; transition: all .3s ease; }
+aside#sct_ct_1.sct_ct .cate-nav-wrap,
+aside#sct_ct_1.sct_ct .cate-nav-wrap > div { position: relative; }
+aside#sct_ct_1.sct_ct ul { position: relative; display: flex; flex-direction: row; margin: 0; }
+aside#sct_ct_1.sct_ct .cate-nav-wrap:before { position: absolute; content: ""; width: 100%; height: 2px; bottom: -2px; background-color: #dedede; clear: both; display: table; float: none; }
+aside#sct_ct_1.sct_ct ul li { border: 0; width: auto; position: relative; }
+aside#sct_ct_1.sct_ct ul li:not(.cate-main) a { position: relative; border-radius: 10px 10px 0 0; padding: 0 15px; border-top: 1px solid #dedede; border-left: 1px solid #dedede; border-right: 1px solid #dedede; background-color: #efefef; }
+aside#sct_ct_1.sct_ct ul li:not(.cate-main) a:hover { border-top: 1px solid #666; border-left: 1px solid #666; border-right: 1px solid #666; background-color: #999; }
+aside#sct_ct_1.sct_ct ul li.cate-main a { padding-right: 30px; background-color: transparent; position: relative; font-weight: bold; color: #333; }
+aside#sct_ct_1.sct_ct ul li.cate-main a:hover {  }
+aside#sct_ct_1.sct_ct ul li.cate-main a:after { position: absolute; content: ""; top: 50%; right: 15px; transform: translateY(-50%); border-left: 5px solid #555; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 0; }
+aside#sct_ct_1.sct_ct ul li:not(.cate-main) a:hover:after { position: absolute; content: ""; width: calc(100% + 2px); height: 2px; bottom: -2px; left: -1px; background-color: #666666; }
+aside#sct_ct_1.sct_ct ul li.active:after { position: absolute; content: ""; bottom: -5px; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #000000; border-bottom: 0; }
+aside#sct_ct_1.sct_ct ul li.active:not(.cate-main) a { background-color: #666666; color: #ffffff; font-weight: bold; }
+aside#sct_ct_1.sct_ct ul li.active:not(.cate-main) a:after { position: absolute; content: ""; width: 100%; height: 2px; bottom: -2px; left: 0; background-color: #000000; }
+/********** } Quick nav **********/
+#sit_inf_explan { text-align: center; }
+#sit_inf_explan p { display: inline-block; }
+#sit_inf_explan > *:not(iframe+img) { display: inline-block; }
+.cate-list.sct_10.sct_60 .sct_li { height: 450px; }
+.cate-list.sct_10.sct_60 .sct_li .sct_txt { font-size: 1.3rem; }
+.cate-list.sct_10.sct_60 .sct_li .sct_basic { text-align: left; padding: 0 15px; }
+.cate-list.sct_10.sct_60 .sct_li > .sct_cost { font-size: 1.1rem; }
+.cate-list.sct_10.sct_60 .sct_li > .sct_basic { /*font-size: 1rem;*/ }
+/********** END :: category list **********/
+/********** BIGIN :: Product detail **********/
+select#ct_send_cost { font-size: .8rem; }
+
+/* - BIGIN :: carousel - */
+.carousel-thumbnails .carousel-inner { text-align: center; }
+.carousel-thumbnails .carousel-inner .carousel-item { text-align: center; }
+.carousel-thumbnails .carousel-inner .carousel-item img { width: auto; min-width: auto; }
+.carousel-thumbnails .carousel-indicators img {
+    max-width: 100px;
+    height: 50px;
+    overflow: hidden;
+    display: block;
+}
+
+.carousel-thumbnails .carousel-indicators li {
+    height: auto;
+    max-width: 100px;
+    width: 100px;
+    border: none;
+	box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.75);
+	border-bottom: 4px solid transparent;
+	opacity: .5;
+	transition: all .3s ease;
+}
+
+.carousel-thumbnails .carousel-indicators li.active {
+	border-bottom: 4px solid #fff;
+	transition: all .3s ease;
+	opacity: 1;
+}
+#carousel-thumb .carousel-indicators { bottom: -100px; }
+/* - END :: carousel - */
+/* BIGIN :: Layer popup title */
+.new_win #win_title {
+    font-size: 1.5rem;
+    height: 90px;
+    line-height: 70px;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+}
+/* END :: Layer popup title */
+/* BIGIN :: 관련상품 */
+.bx-wrapper .bx-loading { display: none; }
+/* END :: 관련상품 */
+/********** END :: Product detail **********/

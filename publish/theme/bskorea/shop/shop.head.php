@@ -21,6 +21,8 @@ $languagePack = G5_URL.'/language/frontend/common/top-search-logo/'.$_COOKIE['se
 <?php include_once('cate_nav.php'); ?>
 <link rel="stylesheet" href="/css/magnific-popup.css" />
 <script src="/js/jquery.magnific-popup.js"></script>
+<link rel="stylesheet" href="/css/jquery.bxslider.min.css" />
+<!-- <script src="/js/jquery.jquery.bxslider.min.js"></script> -->
 <style class="js-control-nav">
 .cate-main-nav > li > ul > li:first-child::after { top: 0px; }
 </style>
@@ -149,7 +151,7 @@ if(isset($_SESSION['ss_mb_id'])) {
 			<div id="logo">
 				<a href="<?php echo G5_SHOP_URL; ?>/">
 					<!-- <img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"> -->
-					<img src="<?php echo G5_URL; ?>/img/logo/bek-logo.png" alt="<?php echo $config['cf_title']; ?>">
+					<img src="<?php echo G5_URL; ?>/img/logo/sancheong_berry_logo.png" alt="<?php echo $config['cf_title']; ?>">
 				</a>
 			</div>
 			<div class="search-logo"></div>

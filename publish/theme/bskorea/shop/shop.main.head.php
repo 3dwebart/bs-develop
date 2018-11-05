@@ -149,7 +149,7 @@ if(isset($_SESSION['ss_mb_id'])) {
 			<div id="logo">
 				<a href="<?php echo G5_SHOP_URL; ?>/">
 					<!-- <img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"> -->
-					<img src="<?php echo G5_URL; ?>/img/logo/bek-logo.png" alt="<?php echo $config['cf_title']; ?>">
+					<img src="<?php echo G5_URL; ?>/img/logo/sancheong_berry_logo.png" alt="<?php echo $config['cf_title']; ?>">
 				</a>
 			</div>
 			<div class="search-logo"></div>

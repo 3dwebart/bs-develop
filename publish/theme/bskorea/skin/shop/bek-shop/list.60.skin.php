@@ -128,7 +128,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 			<a href="#" class="get-cart-payment">
 				<i class='fa fa-shopping-cart'></i>
 			</a>
-			<a href="<?php echo G5_SHOP_SKIN_URL ?>/ajax.details.php" class="simplicity-detail" data-id="<?php echo $row['it_id']; ?>" ata-effect="mfp-zoom-in">
+			<a href="<?php echo G5_SHOP_SKIN_URL ?>/ajax.details.php" class="simplicity-detail" data-id="<?php echo $row['it_id']; ?>" data-effect="mfp-zoom-in">
 				<i class="fa fa-eye"></i>
 			</a>
 			<a href="<?php echo($this->href.$row['it_id']); ?>">

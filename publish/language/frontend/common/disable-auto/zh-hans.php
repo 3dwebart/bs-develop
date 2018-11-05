@@ -63,6 +63,9 @@ $disableAuto = array (
 	'fontSizeConsistOfDisplayNone' => 'font size consist display:none',
 	'small' => 'small',
 	'large' => 'large',
+	// Detail page
+	'pressYourOrderIn' => 'press your order in',
+	'shoppingCart' => 'shopping cart',
 	// footer
 	'companyName' => 'company name',
 	'CRN' => 'company registration number',

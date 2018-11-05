@@ -1,0 +1,249 @@
+INSERT INTO `g5_shop_item` (`it_id`, `ca_id`, `ca_id2`, `ca_id3`, `it_skin`, `it_mobile_skin`, `it_name`, `it_maker`, `it_origin`, `it_brand`, `it_model`, `it_option_subject`, `it_supply_subject`, `it_type1`, `it_type2`, `it_type3`, `it_type4`, `it_type5`, `it_basic`, `it_explan`, `it_explan2`, `it_mobile_explan`, `it_cust_price`, `it_price`, `it_point`, `it_point_type`, `it_supply_point`, `it_notax`, `it_sell_email`, `it_use`, `it_nocoupon`, `it_soldout`, `it_stock_qty`, `it_stock_sms`, `it_noti_qty`, `it_sc_type`, `it_sc_method`, `it_sc_price`, `it_sc_minimum`, `it_sc_qty`, `it_buy_min_qty`, `it_buy_max_qty`, `it_head_html`, `it_tail_html`, `it_mobile_head_html`, `it_mobile_tail_html`, `it_hit`, `it_time`, `it_update_time`, `it_ip`, `it_order`, `it_tel_inq`, `it_info_gubun`, `it_info_value`, `it_sum_qty`, `it_use_cnt`, `it_use_avg`, `it_shop_memo`, `ec_mall_pid`, `it_img1`, `it_img2`, `it_img3`, `it_img4`, `it_img5`, `it_img6`, `it_img7`, `it_img8`, `it_img9`, `it_img10`, `it_1_subj`, `it_2_subj`, `it_3_subj`, `it_4_subj`, `it_5_subj`, `it_6_subj`, `it_7_subj`, `it_8_subj`, `it_9_subj`, `it_10_subj`, `it_1`, `it_2`, `it_3`, `it_4`, `it_5`, `it_6`, `it_7`, `it_8`, `it_9`, `it_10`) VALUES
+('1540974269', '30', '3040', '', '', '', '지리산 산청 누에환 5령3일 500g', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 1, 0, 0, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974395_09.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974395_09.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974395_32.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974395_32.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974395_81.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974395_81.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974395_93.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974395_93.jpg">
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3IKbp6IjrE4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>', '\r\n', '', 0, 70000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 6, '2018-10-31 17:27:28', '2018-10-31 17:27:28', '::1', 1, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540974269/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540887750', '30', '3040', '', 'theme/bek-shop-basic', 'theme/basic', '산청한방꾸지뽕 비누치약선물세트', '이연옥', '생비량면', '산청한방꾸지뽕 영농조합법인', '', '산음동의 선물세트', '', 0, 0, 0, 1, 0, '', '
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540888173_43.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540888173_43.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540888173_6.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540888173_6.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540888173_79.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540888173_79.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540888173_99.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540888173_99.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540888174_17.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540888174_17.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540888174_41.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540888174_41.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1yxO3DrbAgE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div>', '\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n', '', 40000, 14000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 5, '2018-10-30 17:38:34', '2018-10-31 18:07:53', '::1', 12, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540887750/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540976248', '30', '3040', '', '', '', '오디푸딩 75g', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 0, 0, 1, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976295_51.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976295_51.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976295_63.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976295_63.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976295_84.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976295_84.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976296.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976296.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976296_1.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976296_1.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976296_15.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976296_15.jpg">
+</div>', '\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n', '', 0, 20000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 3, '2018-10-31 17:59:54', '2018-10-31 18:03:56', '::1', 10, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540976248/1.jpg', '1540976248/2.jpg', '1540976248/3.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540975266', '30', '3040', '', '', '', '지리산 산청 누에가루 500g', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 0, 1, 0, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975297_16.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975297_16.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975297_39.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975297_39.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975297_65.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975297_65.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975297_79.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975297_79.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3IKbp6IjrE4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div>', '&nbsp;\r\n\r\n', '', 0, 65000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 5, '2018-10-31 17:42:22', '2018-10-31 18:03:45', '::1', 8, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540975266/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540975343', '30', '3040', '', '', '', '뽕잎환스틱 3g*90', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 0, 0, 0, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975375_96.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975375_96.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975376_09.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975376_09.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975376_24.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975376_24.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975376_43.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975376_43.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4?ecver=1" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975376_57.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975376_57.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975376_67.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975376_67.jpg">
+</div>', '\r\n\r\n\r\n\r\n', '', 0, 40000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 17:44:31', '2018-10-31 17:44:31', '::1', 9, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540975343/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540975179', '30', '3040', '', '', '', '통누에 500g', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 0, 0, 0, 0, 0, '', <div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975211_06.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975211_06.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975211_17.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975211_17.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975211_35.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975211_35.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975211_48.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975211_48.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4?ecver=1" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975211_56.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975211_56.jpg">
+</div>', '\r\n\r\n\r\n', '', 0, 65000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 17:41:05', '2018-10-31 17:41:05', '::1', 7, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540975179/1.jpg', '1540975179/2.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540974910', '30', '3040', '', '', '', '누에환스틱 선물세트 90g*3', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 0, 0, 0, 0, 0, '', <div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974965_17.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974965_17.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974965_63.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974965_63.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4?ecver=1" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+</div>', '\r\n', '', 0, 60000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 17:36:40', '2018-10-31 17:36:40', '::1', 5, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540974910/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540975000', '30', '3040', '', '', '', '누에환스틱 선물세트 3g*90', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 0, 0, 0, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975059_37.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975059_37.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975059_49.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975059_49.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975059_65.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975059_65.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975059_82.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975059_82.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4?ecver=1" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975059_91.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975059_91.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540975060.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540975060.jpg">
+</div>', '\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n', '', 0, 48000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 17:39:38', '2018-10-31 17:39:38', '::1', 6, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540975000/1.jpg', '1540975000/2.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540974755', '30', '3040', '', '', '', '뽕잎환 500g', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 1, 0, 0, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974806_71.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974806_71.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974806_83.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974806_83.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974807_01.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974807_01.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974807_2.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974807_2.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4?ecver=1" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974807_3.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974807_3.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974807_35.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974807_35.jpg">
+</div>', '\r\n\r\n\r\n\r\n\r\n\r\n\r\n', '', 0, 50000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 17:35:09', '2018-10-31 18:04:47', '::1', 4, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540974755/1.jpg', '1540974755/2.jpg', '1540974755/3.jpg', '1540974755/4.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540974600', '30', '3040', '', '', '', '뽕잎환스틱 선물세트 90g*3 (10+1)', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 1, 0, 0, 0, 0, '', <div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974681_03.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974681_03.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974681_16.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974681_16.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974681_28.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974681_28.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974681_47.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974681_47.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4?ecver=1" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974681_61.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974681_61.jpg">
+</div>', '\r\n\r\n&nbsp;', '', 0, 45000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 9, '2018-10-31 17:32:34', '2018-10-31 18:03:15', '::1', 3, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540974600/1.jpg', '1540974600/2.jpg', '1540974600/3.jpg', '1540974600/4.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540974451', '30', '3040', '', '', '', '뽕잎가루 500g', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 1, 0, 0, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974516_86.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974516_86.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974516_98.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974516_98.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974517_18.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974517_18.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974517_41.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974517_41.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4?ecver=1" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974517_54.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974517_54.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540974517_64.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540974517_64.jpg">
+</div>', '\r\n\r\n\r\n\r\n\r\n\r\n\r\n', '', 0, 25000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 7, '2018-10-31 17:29:58', '2018-10-31 17:29:58', '::1', 2, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540974451/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540978382', '30', '3040', '', '', '', '지리산야생꾸지뽕진액', '지리산한방식품영농조합법인', '삼장면', '', '', '', '', 0, 0, 0, 1, 0, '', <div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540978418_81.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540978418_81.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540978419_43.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540978419_43.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pRYAXnprCCY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+</div>', '\r\n', '', 0, 0, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 18:34:30', '2018-10-31 18:34:30', '::1', 15, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540978382/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540978471', '30', '3040', '', '', '', '갈아만든꾸지뽕 100ml*20포', '산청한방꾸지뽕 영농조합법인', '생비량면', '', '', '중량', '', 0, 0, 0, 1, 0, '', <div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540978553_3.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540978553_3.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1yxO3DrbAgE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div>', '\r\n', '', 0, 33000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 18:37:59', '2018-10-31 18:37:59', '::1', 16, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540978471/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540978292', '30', '3040', '', '', '', '지리산 꾸지뽕환 200g', '지리산한방식품영농조합법인', '삼장면', '', '', '', '', 0, 0, 0, 1, 0, '', <div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540978331_8.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540978331_8.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pRYAXnprCCY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+</div>', '\r\n', '', 0, 25000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 18:33:01', '2018-10-31 18:33:01', '::1', 14, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540978292/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540976883', '30', '3040', '', '', '', '지리산야생꾸지뽕(프리미엄)', '지리산한방식품영농조합법인', '삼장면', '', '', '선택', '', 0, 0, 0, 1, 0, '', <div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540978135_3.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540978135_3.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pRYAXnprCCY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+</div>', '\r\n', '', 0, 0, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 2, '2018-10-31 18:31:30', '2018-10-31 18:31:30', '::1', 12, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540976883/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1540976395', '30', '3040', '', '', '', '오디쨈 300g', '산청군양잠 농업협동조합', '금서면', '', '', '', '', 0, 0, 0, 0, 0, '', '<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976419_67.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976419_67.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976419_75.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976419_75.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976419_93.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976419_93.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976420_16.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976420_16.jpg">
+</div>
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7SuRN7F7Gh4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976420_25.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976420_25.jpg">
+</div>
+<div>
+<img src="/data/editor/1810/38d5773749cc89aa326d2ae7c3b8f385_1540976420_3.jpg" title="38d5773749cc89aa326d2ae7c3b8f385_1540976420_3.jpg">
+</div>', '\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n', '', 0, 21000, 0, 0, 0, 0, '', 1, 0, 0, 99999, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, '2018-10-31 18:02:01', '2018-10-31 18:02:01', '::1', 11, 0, 'wear', 'a:8:{s:8:"material";s:22:"상품페이지 참고";s:5:"color";s:22:"상품페이지 참고";s:4:"size";s:22:"상품페이지 참고";s:5:"maker";s:22:"상품페이지 참고";s:7:"caution";s:22:"상품페이지 참고";s:16:"manufacturing_ym";s:22:"상품페이지 참고";s:8:"warranty";s:22:"상품페이지 참고";s:2:"as";s:22:"상품페이지 참고";}', 0, 0, 0.0, '', '', '1540976395/1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');

@@ -70,6 +70,8 @@ var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
 </script>
 <!-- <script src="<?php echo G5_JS_URL ?>/jquery-1.8.3.min.js"></script> -->
 <script src="<?php echo G5_JS_URL ?>/jquery-3.3.1.js"></script>
+<script src="<?php echo G5_JS_URL ?>/popper.js"></script>
+<script src="<?php echo G5_JS_URL ?>/tooltip.js"></script>
 <script src="<?php echo G5_JS_URL ?>/bootstrap.js"></script>
 <script src="<?php echo G5_JS_URL ?>/jquery.cookie.js"></script>
 <script src="<?php echo G5_JS_URL ?>/bootbox.js"></script>
