@@ -48,8 +48,14 @@ if($config['cf_add_meta'])
 <title><?php echo $g5_head_title; ?></title>
 <?php
 $shop_css = '';
-if (defined('_SHOP_')) $shop_css = '_shop';
+if (defined('_SHOP_')) {
+    $shop_css = '_shop';
+    $common_css = '_common';
+    $custom_css = '_custom';
+}
 echo '<link rel="stylesheet" href="'.G5_THEME_CSS_URL.'/'.(G5_IS_MOBILE?'mobile':'default').$shop_css.'.css?ver='.G5_CSS_VER.'">'.PHP_EOL;
+echo '<link rel="stylesheet" href="'.G5_THEME_CSS_URL.'/'.(G5_IS_MOBILE?'mobile':'default').$common_css.'.css?ver='.G5_CSS_VER.'">'.PHP_EOL;
+echo '<link rel="stylesheet" href="'.G5_THEME_CSS_URL.'/'.(G5_IS_MOBILE?'mobile':'default').$custom_css.'.css?ver='.G5_CSS_VER.'">'.PHP_EOL;
 ?>
 <!--[if lte IE 8]>
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>

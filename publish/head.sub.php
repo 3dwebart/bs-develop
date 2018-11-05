@@ -1,4 +1,4 @@
-<?php
+1<?php
 // 이 파일은 새로운 파일 생성시 반드시 포함되어야 함
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
@@ -58,7 +58,9 @@ if (defined('G5_IS_ADMIN')) {
         echo '<link rel="stylesheet" href="'.G5_ADMIN_URL.'/css/admin.css">'.PHP_EOL;
 } else {
     $shop_css = '';
-    if (defined('_SHOP_')) $shop_css = '_shop';
+    if (defined('_SHOP_')) {
+        $shop_css = '_shop';
+    }
     echo '<link rel="stylesheet" href="'.G5_CSS_URL.'/'.(G5_IS_MOBILE?'mobile':'default').$shop_css.'.css?ver='.G5_CSS_VER.'">'.PHP_EOL;
 }
 ?>
@@ -83,16 +85,18 @@ var g5_admin_url = "<?php echo G5_ADMIN_URL; ?>";
 <!-- <script src="<?php echo G5_JS_URL ?>/jquery-1.8.3.min.js"></script> -->
 <script src="<?php echo G5_JS_URL ?>/jquery-3.3.1.js"></script>
 <?php
-if (defined('_SHOP_')) {
-    if(!G5_IS_MOBILE) {
+    if (defined('_SHOP_')) {
+        if(!G5_IS_MOBILE) {
 ?>
 <script src="<?php echo G5_JS_URL ?>/jquery.shop.menu.js?ver=<?php echo G5_JS_VER; ?>"></script>
 <?php
-    }
-} else {
+        }
+    } else {
 ?>
 <script src="<?php echo G5_JS_URL ?>/jquery.menu.js?ver=<?php echo G5_JS_VER; ?>"></script>
-<?php } ?>
+<?php
+    }
+?>
 <script src="<?php echo G5_JS_URL ?>/common.js?ver=<?php echo G5_JS_VER; ?>"></script>
 <script src="<?php echo G5_JS_URL ?>/wrest.js?ver=<?php echo G5_JS_VER; ?>"></script>
 <script src="<?php echo G5_JS_URL ?>/placeholders.min.js"></script>
