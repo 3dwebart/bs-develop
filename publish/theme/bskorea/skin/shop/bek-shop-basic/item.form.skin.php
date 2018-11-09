@@ -80,6 +80,8 @@ echo '<script src="'.G5_SHOP_SKIN_URL.'/js/custom.js"></script>';
 							} else {
 								echo '<span class="sound_only">이 분류에 등록된 다른 상품이 없습니다.</span>';
 							}
+
+							//echo '<h3>'.htmlspecialchars($prev_href).'</h3>';
 							?>
 							<a href="<?php echo G5_SHOP_URL; ?>/largeimage.ajax.php?it_id=<?php echo $it['it_id']; ?>&amp;no=1" target="_blank" class="popup_item_image "><i class="fa fa-search-plus" aria-hidden="true"></i><span class="sound_only">확대보기</span></a>
 						</div>

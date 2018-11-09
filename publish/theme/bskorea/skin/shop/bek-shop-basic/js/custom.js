@@ -8,11 +8,3 @@ axe.run( function(err, results) {
 $(document).on('click', '.mfp-close', function() {
 	$.magnificPopup.close();
 });
-
-(function($) {
-	var i = 0;
-	$(window).scroll(function() {
-		i++;
-		console.log('TEST :: ' + i);
-	});
-})(jQuery);

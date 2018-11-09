@@ -6,6 +6,28 @@
 }
 #hd #logo img {
     height: auto;
-    max-height: 50px;
+    max-height: 40px;
     width: auto;
+    transition: all .3s ease;
+}
+
+#hd_wr.fixed #logo {
+    margin-top: 0px;
+}
+#hd .fixed #logo img {
+    max-height: 30px;
+    transition: all .3s ease;
+}
+
+#ft_to_top {
+	opacity: 0;
+	transition: all .3s ease;
+}
+#ft_to_top.sc-on {
+	opacity: 1;
+	transition: all .3s ease;
+}
+
+#ft #ft_logo img {
+	max-height: 50px;
 }

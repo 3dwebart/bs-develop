@@ -35,15 +35,15 @@ legend { width: auto; }
 /* BIGIN :: NAV Custom */
 #hd_menu {
 	transition: all .5s ease;
-	background: rgba(242, 242, 242, 1);
+	background: rgba(4, 68, 113, 1);
 	width: 100%;
 }
 
-#hd_menu li a { font-size: .8rem; }
+#hd_menu li a { font-size: .8rem; color: #fff; }
 
 #hd_menu.on-scroll {
 	transition: all .5s ease;
-	background: rgba(242, 242, 242, .8);
+	background: rgba(4, 68, 113, .8);
 	position: fixed;
 	z-index: 100;
 	top: 0;
