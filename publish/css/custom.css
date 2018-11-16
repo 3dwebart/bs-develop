@@ -3,7 +3,13 @@
 a { color: #333; }
 a:hover { text-decoration: none; }
 
+#logo { float: none; }
+
 .cate-main-nav > li > ul > li:first-child::after { top: 0px; }
+
+.search-logo { position: relative; width: 430px; height: 45px; }
+#hd_sch { left: 0; top: -15px; margin-left: 0; left: -420px; z-index: 100; display: none; }
+.relative { position: relative; }
 
 #tnb ul { width: auto; }
 #tnb a { font-size: 12px; }
@@ -28,14 +34,13 @@ legend { width: auto; }
 	max-width: 100%;
 }
 .carousel-item {
-	height: 500px;
 	overflow: hidden;
 }
 /* END :: Index Carousel custom */
 /* BIGIN :: NAV Custom */
 #hd_menu {
 	transition: all .5s ease;
-	background: rgba(4, 68, 113, 1);
+	background: rgba(232, 92, 141, 1);
 	width: 100%;
 }
 
@@ -43,7 +48,7 @@ legend { width: auto; }
 
 #hd_menu.on-scroll {
 	transition: all .5s ease;
-	background: rgba(4, 68, 113, .8);
+	background: rgba(232, 92, 141, .8);
 	position: fixed;
 	z-index: 100;
 	top: 0;
@@ -176,3 +181,21 @@ legend { width: auto; }
 	/* Without this, clicking will make it sticky */
 	pointer-events: none;
 }
+
+.p-red { color: rgba(233,92,141,1); }
+/* BIGIN :: Custom button */
+.btn-scberries {
+    color: #fff;
+    background-color: #e85f8f;
+    border-color: #e85f8f;
+}
+.btn-scberries:hover {
+    color: #fff;
+    background-color: #e13d76;
+    border-color: #e13d76;
+}
+.btn-scberries:focus {
+	border: 0;
+	box-shadow: 0 0 0;
+}
+/* END :: Custom button */

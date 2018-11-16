@@ -15,7 +15,7 @@ include_once(G5_LIB_PATH.'/visit.lib.php');
 include_once(G5_LIB_PATH.'/connect.lib.php');
 include_once(G5_LIB_PATH.'/popular.lib.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
-include_once(G5_PATH.'/Language/language-control.php');
+include_once(G5_PATH.'/language/language-control.php');
 $languagePack = G5_URL.'/language/frontend/common/top-search-logo/'.$_COOKIE['selLanguage'].'.php';
 ?>
 <?php include_once('cate_nav.php'); ?>
@@ -81,6 +81,19 @@ $(function () {
 			}
 		}
 	});
+
+	var x = 0;
+	$(document).on('click', '.nav-in-search a', function() {
+		$(this).parent().find('#hd_sch').toggle();
+		x = (x - 1) * -1;
+		if(x == 1) {
+			$(this).find('i').removeClass('fa-search');
+			$(this).find('i').addClass('fa-close');
+		} else {
+			$(this).find('i').removeClass('fa-close');
+			$(this).find('i').addClass('fa-search');
+		}
+	});
 });
 </script>
 <!-- 상단 시작 { -->
@@ -144,14 +157,19 @@ if(isset($_SESSION['ss_mb_id'])) {
 		</div>
 	</div>
 	</script>
+	<div id="logo" class="text-center">
+		<a href="<?php echo G5_SHOP_URL; ?>/">
+			<!-- <img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"> -->
+			<img src="<?php echo G5_URL; ?>/img/logo/sancheong_berry_logo.png" alt="<?php echo $config['cf_title']; ?>">
+		</a>
+	</div>
+	<div class="search-logo"></div>
+	<script id="searchLogo" type="text/x-jquery-tmpl">
+	
+	</script>
+	<!-- *****
 	<div id="hd_wrapper">
 		<div class="container">
-			<div id="logo">
-				<a href="<?php echo G5_SHOP_URL; ?>/">
-					<!-- <img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"> -->
-					<img src="<?php echo G5_URL; ?>/img/logo/sancheong_berry_logo.png" alt="<?php echo $config['cf_title']; ?>">
-				</a>
-			</div>
 			<div class="search-logo"></div>
 			<script id="searchLogo" type="text/x-jquery-tmpl">
 			<div id="hd_sch">
@@ -165,11 +183,12 @@ if(isset($_SESSION['ss_mb_id'])) {
 				</form>
 			</div>
 			</script>
-			<!-- 쇼핑몰 배너 시작 { -->
-			<?php echo display_banner('왼쪽'); ?>
-			<!-- } 쇼핑몰 배너 끝 -->
+			<!- 쇼핑몰 배너 시작 { ->
+			<?php //echo display_banner('왼쪽'); ?>
+			<!- } 쇼핑몰 배너 끝 ->
 		</div>
 	</div>
+	***** -->
 	
 	<div id="hd_menu">
 	</div>
@@ -194,6 +213,17 @@ if(isset($_SESSION['ss_mb_id'])) {
 				<li>
 					<a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=5">${sale}${item}</a>
 				</li>
+				<li class="hd_menu_right nav-in-search relative">
+					<a href="#"><i class="fa fa-search"></i></a>
+					<div id="hd_sch">
+						<h3>${shoppingMallSearch}</h3>
+						<form name="frmsearch1" action="<?php echo G5_SHOP_URL; ?>/search.php" onsubmit="return search_submit(this);">
+							<label for="sch_str" class="sound_only">${searchWord}<strong class="sound_only"> ${require}</strong></label>
+							<input type="text" name="q" value="<?php echo stripslashes(get_text(get_search_string($q))); ?>" id="sch_str" placeholder="${inputOfSearchWord}" required>
+							<button type="submit" id="sch_submit"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">${search}</span></button>
+						</form>
+					</div>
+				</li>
 				<li class="hd_menu_right">
 					<a href="<?php echo G5_BBS_URL; ?>/faq.php">${faq}</a>
 				</li>
@@ -215,7 +245,7 @@ if(isset($_SESSION['ss_mb_id'])) {
 </div>
 <script>
 function search_submit(f) {
-	if (f.q.value.length < 2) {
+	if (f.q.value.length < 0) {
 		jQuery.ajax({
 			url: "/language/lang_select.php",
 			type: "post",

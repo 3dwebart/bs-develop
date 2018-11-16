@@ -8,7 +8,6 @@ include_once(G5_THEME_MSHOP_PATH.'/shop.head.php');
 
 <script src="<?php echo G5_JS_URL; ?>/swipe.js"></script>
 <script src="<?php echo G5_JS_URL; ?>/shop.mobile.main.js"></script>
-
 <?php echo display_banner('메인', 'mainbanner.10.skin.php'); ?>
 <?php echo display_banner('왼쪽', 'boxbanner.skin.php'); ?>
 

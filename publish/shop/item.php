@@ -140,15 +140,17 @@ $sql = " select it_id, it_name, it_img1 from {$g5['g5_shop_item_table']} where i
 $row = sql_fetch($sql);
 if ($row['it_id']) {
     if(!empty($row['it_img1'])) {
-        $prev_image = '<img src="'.G5_DATA_URL.'/item/'.$row['it_img1'].'" alt="'.$row['it_img1'].'" title="'.$row['it_img1'].'" />';
+        $prev_image = '<img src="'.G5_DATA_URL.'/item/'.$row['it_img1'].'" alt="'.$row['it_img1'].'" title="'.$row['it_img1'].'" class="img-fluid" />';
+        $prev_image .= '<span class="title">'.$row['it_name'].'</span>';
     } else {
         $prev_image = '';
     }
-    $prev_img = '<span class="prev_img">'.$prev_image.'</span>';
+    $prev_img = '<span class="prev_img" data-img="prev_img">'.$prev_image.'</span>';
     $prev_title = '이전상품<span class="sound_only"> '.$row['it_name'].'</span>';
     $prev_href = '<a href="./item.php?it_id='.$row['it_id'].'" id="siblings_prev">';
     $prev_href2 = '</a>'.PHP_EOL;
 } else {
+    $prev_img = '';
     $prev_title = '';
     $prev_href = '';
     $prev_href2 = '';
@@ -159,15 +161,17 @@ $sql = " select it_id, it_name, it_img1 from {$g5['g5_shop_item_table']} where i
 $row = sql_fetch($sql);
 if ($row['it_id']) {
     if(!empty($row['it_img1'])) {
-        $next_image = '<img src="'.G5_DATA_URL.'/item/'.$row['it_img1'].'" alt="'.$row['it_img1'].'" title="'.$row['it_img1'].'" />';
+        $next_image = '<img src="'.G5_DATA_URL.'/item/'.$row['it_img1'].'" alt="'.$row['it_img1'].'" title="'.$row['it_img1'].'" class="img-fluid" />';
+        $next_image .= '<span class="title">'.$row['it_name'].'</span>';
     } else {
         $next_image = '';
     }
-    $next_img = '<span class="prev_img">'.$next_image.'</span>';
+    $next_img = '<span class="next_img" data-img="next_img">'.$next_image.'</span>';
     $next_title = '다음 상품<span class="sound_only"> '.$row['it_name'].'</span>';
     $next_href = '<a href="./item.php?it_id='.$row['it_id'].'" id="siblings_next">';
     $next_href2 = '</a>'.PHP_EOL;
 } else {
+    $next_img = '';
     $next_title = '';
     $next_href = '';
     $next_href2 = '';
@@ -256,24 +260,22 @@ include_once(G5_SHOP_PATH.'/settle_naverpay.inc.php');
 <?php if($is_orderable) { ?>
 <script src="<?php echo G5_JS_URL; ?>/shop.js"></script>
 <?php } ?>
+<div class="container">
+    <div id="sit">
+        <?php
+        // 상품 구입폼
+        include_once($skin_dir.'/item.form.skin.php');
+        ?>
 
-<div id="sit">
-
-    <?php
-    // 상품 구입폼
-    include_once($skin_dir.'/item.form.skin.php');
-    ?>
-
-    <?php
-    // 상품 상세정보
-    $info_skin = $skin_dir.'/item.info.skin.php';
-    if(!is_file($info_skin))
-        $info_skin = G5_SHOP_SKIN_PATH.'/item.info.skin.php';
-    include $info_skin;
-    ?>
-
+        <?php
+        // 상품 상세정보
+        $info_skin = $skin_dir.'/item.info.skin.php';
+        if(!is_file($info_skin))
+            $info_skin = G5_SHOP_SKIN_PATH.'/item.info.skin.php';
+        include $info_skin;
+        ?>
+    </div>
 </div>
-
 <?php
 // 하단 HTML
 echo conv_content($it['it_tail_html'], 1);

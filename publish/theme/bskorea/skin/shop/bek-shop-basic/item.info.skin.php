@@ -141,7 +141,7 @@ $(window).on("load", function() {
 $(document).ready(function() {
     $('.sanchor li a').click(function() {
         var tabLinkId = $(this).attr('href');
-        var linkPos = $(tabLinkId).offset().top;
+        var linkPos = $(tabLinkId).offset().top + 46;
         $("html, body").animate({ scrollTop: linkPos }, 600);
         return false;
     });

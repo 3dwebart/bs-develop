@@ -19,8 +19,12 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
         총 <strong><?php echo $total_count; ?></strong> 건 사용후기
         <?php } ?>
         <div id="sit_use_wbtn">
+            <a href="<?php echo $itemuse_form; ?>" class="btn btn-scberries">사용후기 쓰기<span class="sound_only"> 새 창</span></a>
+            <a href="<?php echo $itemuse_list; ?>" class="btn btn-outline-scberries">더보기</a>
+            <!--
             <a href="<?php echo $itemuse_form; ?>" class="btn02 itemuse_form">사용후기 쓰기<span class="sound_only"> 새 창</span></a>
             <a href="<?php echo $itemuse_list; ?>" class="btn01 itemuse_list">더보기</a>
+            -->
         </div>
     </div>
     <?php

@@ -107,6 +107,37 @@ select#ct_send_cost { font-size: .8rem; }
 }
 #carousel-thumb .carousel-indicators { bottom: -100px; }
 /* - END :: carousel - */
+/* - BIGIN :: Next item image - */
+#sit_siblings #siblings_prev,
+#sit_siblings #siblings_next {
+    position: relative;
+}
+#sit_siblings #siblings_prev span.prev_img,
+#sit_siblings #siblings_next span.next_img {
+    display: none;
+    position: absolute;
+    top: -140px;
+    left: 0;
+    width: 120px;
+    height: 140px;
+    z-index: 10;
+}
+
+#sit_siblings #siblings_prev span.prev_img .title,
+#sit_siblings #siblings_next span.next_img .title {
+    display: block;
+    color: #333;
+    text-indent: 0;
+    line-height: 20px;
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+#sit_siblings #siblings_prev span.prev_img.on,
+#sit_siblings #siblings_next span.next_img.on {
+    display: block;
+}
+/* - END :: Next item image - */
 /* BIGIN :: Layer popup title */
 .new_win #win_title {
     font-size: 1.5rem;

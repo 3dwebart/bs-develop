@@ -89,9 +89,10 @@ include_once(G5_THEME_SHOP_PATH.'/shop.main.head.php');
 <?php
 //include_once(G5_THEME_SHOP_PATH.'/shop.main.side.php');
 ?>
+<?php echo display_banner('메인', 'mainbanner.20.skin.php'); ?>
 <div class="container">
 <!-- 메인이미지 시작 { -->
-<?php echo display_banner('메인', 'mainbanner.10.skin.php'); ?>
+
 <!-- } 메인이미지 끝 -->
 
 <?php if($default['de_type1_list_use']) { ?>
