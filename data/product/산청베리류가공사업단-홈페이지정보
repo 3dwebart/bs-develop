@@ -1,0 +1,29 @@
+솔루션 : 영카트
+scberries
+bars1!
+
+cafe24 :
+*** web login
+scberries
+barskorea1
+*** DB login
+scberries
+tkscjdqpfl1! // <= 산청베리1!
+
+FTP :
+host : scberries.cafe24.com
+
+**** 도메인 선정시 http://www. 뺸 도메인
+**** ex) http://www.abcd.com 일 때 abcd.com
+
+host : localhost
+id : scberries
+pw : tkscjdqpfl1!
+DB name : scberries
+
+관리자 : http://scberries.cafe24.com/adm/
+id : admin
+pw : 1234
+
+**** 관리자 비밀번호 수정
+**** 위 관리자 접속 => 회원관리 => 회원관리 => admin 아이디의 맨 우측 수정 

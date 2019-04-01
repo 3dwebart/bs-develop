@@ -1,0 +1,22 @@
+tmp
+dist
+node_modules
+test/*/index.html
+test/integration/*/index.html
+axe.js
+axe.*.js
+*.tgz
+npm-shrinkwrap.json
+typings/axe-core/axe-core-tests.js
+doc/rule-descriptions.*.md
+package-lock.json
+.DS_Store
+!lib/core/imports/index.js
+lib/core/imports/*.js
+
+# running circleci locally to verify build, ignoring relevant files
+# if circle and docker is configured locally (copy circle.yml to .circleci/config.yml) - run -> circleci build
+.circleci/**/*.* 
+
+# ignore jsdoc api documentation generated files
+doc/api/*

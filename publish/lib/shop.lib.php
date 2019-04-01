@@ -440,7 +440,7 @@ function get_it_image($it_id, $width, $height=0, $anchor=false, $img_id='', $img
 	return $img;
 }
 
-
+// 상품 이미지를 얻는다 - 반응형 이미지
 function get_it_image_responsive($it_id, $width, $height=0, $anchor=false, $img_id='', $img_alt='', $is_crop=true)
 {
 	global $g5;
@@ -499,8 +499,6 @@ function get_it_image_responsive($it_id, $width, $height=0, $anchor=false, $img_
 
 	return $img;
 }
-
-
 
 // 상품이미지 썸네일 생성
 function get_it_thumbnail($img, $width, $height=0, $id='', $is_crop=true)
@@ -1274,7 +1272,6 @@ function display_event($no, $event, $list_mod, $list_row, $img_width, $img_heigh
 	}
 }
 
-
 function get_yn($val, $case='')
 {
 	switch ($case) {
@@ -1956,8 +1953,9 @@ function is_used_coupon($mb_id, $cp_id)
 	$sql = " SELECT count(*) AS cnt FROM {$g5['g5_shop_coupon_log_table']} WHERE mb_id = '$mb_id' AND cp_id = '$cp_id' ";
 	$row = sql_fetch($sql);
 
-	if($row['cnt'])
+	if($row['cnt']) {
 		$used = true;
+	}
 
 	return $used;
 }
@@ -1971,8 +1969,9 @@ function is_soldout($it_id)
 	$sql = " SELECT it_soldout, it_stock_qty FROM {$g5['g5_shop_item_table']} WHERE it_id = '$it_id' ";
 	$it = sql_fetch($sql);
 
-	if($it['it_soldout'] || $it['it_stock_qty'] <= 0)
+	if($it['it_soldout'] || $it['it_stock_qty'] <= 0) {
 		return true;
+	}
 
 	$count = 0;
 	$soldout = false;
@@ -1993,19 +1992,22 @@ function is_soldout($it_id)
 			// 옵션 재고수량
 			$stock_qty = get_option_stock_qty($it_id, $row['io_id'], $row['io_type']);
 
-			if($stock_qty <= 0)
+			if($stock_qty <= 0) {
 				$count++;
+			}
 		}
 
 		// 모든 선택옵션 품절이면 상품 품절
-		if($i == $count)
+		if($i == $count) {
 			$soldout = true;
+		}
 	} else {
 		// 상품 재고수량
 		$stock_qty = get_it_stock_qty($it_id);
 
-		if($stock_qty <= 0)
+		if($stock_qty <= 0) {
 			$soldout = true;
+		}
 	}
 
 	return $soldout;
@@ -2027,10 +2029,11 @@ function check_itemuse_write($it_id, $mb_id, $close=true)
 
 		if($row['cnt'] == 0)
 		{
-			if($close)
+			if($close) {
 				alert_close('사용후기는 주문이 완료된 경우에만 작성하실 수 있습니다.');
-			else
+			} else {
 				alert('사용후기는 주문하신 상품의 상태가 완료인 경우에만 작성하실 수 있습니다.');
+			}
 		}
 	}
 }
@@ -2053,34 +2056,38 @@ function shop_member_cert_check($id, $type)
 			for($i=0; $i<3; $i++) {
 				$ca_id = $it['ca_id'.$seq];
 
-				if(!$ca_id)
+				if(!$ca_id) {
 					continue;
+				}
 
 				$sql = " SELECT ca_cert_use, ca_adult_use FROM {$g5['g5_shop_category_table']} WHERE ca_id = '$ca_id' ";
 				$row = sql_fetch($sql);
 
 				// 본인확인체크
 				if($row['ca_cert_use'] && !$member['mb_certify']) {
-					if($member['mb_id'])
+					if($member['mb_id']) {
 						$msg = '회원정보 수정에서 본인확인 후 이용해 주십시오.';
-					else
+					} else {
 						$msg = '본인확인된 로그인 회원만 이용할 수 있습니다.';
+					}
 
 					break;
 				}
 
 				// 성인인증체크
 				if($row['ca_adult_use'] && !$member['mb_adult']) {
-					if($member['mb_id'])
+					if($member['mb_id']) {
 						$msg = '본인확인으로 성인인증된 회원만 이용할 수 있습니다.\\n회원정보 수정에서 본인확인을 해주십시오.';
-					else
+					} else {
 						$msg = '본인확인으로 성인인증된 회원만 이용할 수 있습니다.';
+					}
 
 					break;
 				}
 
-				if($i == 0)
+				if($i == 0) {
 					$seq = 1;
+				}
 				$seq++;
 			}
 
